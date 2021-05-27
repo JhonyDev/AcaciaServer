@@ -1,5 +1,8 @@
 from django.http import HttpResponse
+from django.template import loader
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def load(request):
+    template = loader.get_template('admin_panel/index.html')
+    abc = {}
+    return HttpResponse(template.render(abc, request))
