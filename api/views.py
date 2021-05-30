@@ -18,6 +18,14 @@ def api_post_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['GET', ])
+def get_user_images(request):
+    query = str(request.GET.get('user_id'))
+    photos = Photo.objects.filter(user_id=query)
+    serializer = PhotoSerializer(photos, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST', ])
 @csrf_exempt
 def api_post_photo(request):
