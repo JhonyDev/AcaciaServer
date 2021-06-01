@@ -14,7 +14,12 @@ class User(models.Model):
 
 
 class Photo(models.Model):
-    photo_id = models.CharField(max_length=5000, primary_key=True, default="")
     user_id = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='pictures/%y/%m/%d/', max_length=255, null=False, blank=True)
+    objects = models.Manager()
+
+
+class Interest(models.Model):
+    user_id = models.CharField(max_length=100)
+    interest = models.CharField(max_length=20)
     objects = models.Manager()
