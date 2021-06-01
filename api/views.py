@@ -16,6 +16,9 @@ def api_post_user(request):
     user = User()
     users = User.objects.filter(user_id=query)
     if users:
+        print('-------------------')
+        print('Users with id ' + query + ' Deleted')
+        print('-------------------')
         for user in users:
             user.delete()
     serializer = UserSerializer(user, data=request.data)
@@ -27,7 +30,23 @@ def api_post_user(request):
 
 @api_view(['POST', ])
 def api_post_interest(request):
+    request.build_absolute_uri()
+    url = request.get_full_path()
+    parsed_url = urlparse(url)
+    query = parse_qs(parsed_url.query)
+
+    user_id = query.get('user_id')[0]
+    head = query.get('head')[0]
+
     interest = Interest()
+    if head == 'true':
+        print('--------------------')
+        print('Deleting all interest')
+        print('---------------------')
+        interests = Interest.objects.filter(user_id=user_id)
+        for interest in interests:
+            interest.delete()
+
     serializer = InterestSerializer(interest, data=request.data)
     if serializer.is_valid():
         serializer.save()

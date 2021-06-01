@@ -3,6 +3,7 @@ from django.db import models
 
 class User(models.Model):
     user_id = models.CharField(max_length=100, primary_key=True)
+    name = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100)
     question = models.CharField(max_length=100)
     about = models.CharField(max_length=100)
@@ -10,6 +11,7 @@ class User(models.Model):
     work = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
+    profile_image = models.CharField(max_length=1000, default='')
     objects = models.Manager()
 
 
