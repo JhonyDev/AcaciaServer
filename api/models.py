@@ -3,6 +3,7 @@ from django.db import models
 
 class User(models.Model):
     user_id = models.CharField(max_length=100, primary_key=True)
+    age = models.CharField(max_length=50, default='18')
     name = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100)
     question = models.CharField(max_length=100)
@@ -24,4 +25,11 @@ class Photo(models.Model):
 class Interest(models.Model):
     user_id = models.CharField(max_length=100)
     interest = models.CharField(max_length=20)
+    objects = models.Manager()
+
+
+class Liked(models.Model):
+    who_liked = models.CharField(max_length=100)
+    whom_liked = models.CharField(max_length=100)
+    like_fav = models.CharField(max_length=50, default='None')
     objects = models.Manager()

@@ -1,19 +1,12 @@
 from django.urls import path
 
-from .views import (api_show_image,
-                    api_post_photo,
-                    api_post_user,
-                    get_user_images,
-                    get_interest,
-                    api_post_interest,
-                    api_delete_interest,
-                    api_delete_photo,
-                    get_user)
+from .views import *
 
 urlpatterns = [
     path('post_photo', api_post_photo),
     path('post_user', api_post_user),
     path('post_interests', api_post_interest),
+    path('post_like_fav', api_post_like_fav),
 
     path('delete_interests', api_delete_interest),
     path('delete_photo', api_delete_photo),
@@ -22,4 +15,6 @@ urlpatterns = [
     path('get_user_images', get_user_images),
     path('get_user_interests', get_interest),
     path('get_user', get_user),
+    path('get_user_Likes', get_user_liked),
+    path('get_exp', api_get_exp),
 ]
