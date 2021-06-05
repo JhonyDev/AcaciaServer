@@ -15,6 +15,5 @@ urlpatterns = [
     path('get_user_images', get_user_images),
     path('get_user_interests', get_interest),
     path('get_user', get_user),
-    path('get_user_Likes', get_user_liked),
     path('get_exp', api_get_exp),
 ]

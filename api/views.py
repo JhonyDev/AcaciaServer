@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import User, Photo, Interest, Liked
+from .models import User, Photo, Interest, Expression
 from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer
 
 
@@ -73,18 +73,14 @@ def api_post_interest(request):
 
 @api_view(['POST', ])
 def api_post_like_fav(request):
-    like_fav = Liked()
+    like_fav = Expression()
     serializer = LikedSerializer(like_fav, data=request.data)
 
     if serializer.is_valid():
         who = serializer.validated_data['who_liked']
         whom = serializer.validated_data['whom_liked']
 
-        print('-----*********//////////*******------------')
-        print(whom)
-        print(who)
-
-        likes = Liked.objects.filter(who_liked=who, whom_liked=whom)
+        likes = Expression.objects.filter(who_liked=who, whom_liked=whom)
         for like in likes:
             like.delete()
 
@@ -149,14 +145,6 @@ def get_user(request):
 
 
 @api_view(['GET', ])
-def get_user_liked(request):
-    query = str(request.GET.get('user_id'))
-    liked = Liked.objects.filter(who_liked=query)
-    serializer = LikedSerializer(liked, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET', ])
 def get_interest(request):
     query = str(request.GET.get('user_id'))
     interest = Interest.objects.filter(user_id=query)
@@ -175,10 +163,12 @@ def api_get_exp(request):
     exp = query.get('exp')[0]
     whom = query.get('whom')[0]
 
-    if whom == '*':
-        liked = Liked.objects.filter(who_liked=who, like_fav=exp)
+    if whom == '*' and exp != '*':
+        liked = Expression.objects.filter(who_liked=who, exp=exp)
     elif who == '*':
-        liked = Liked.objects.filter(whom_liked=whom, like_fav=exp)
+        liked = Expression.objects.filter(whom_liked=whom, exp=exp)
+    elif exp == '*':
+        liked = Expression.objects.filter(who_liked=who)
     else:
         return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
@@ -189,5 +179,4 @@ def api_get_exp(request):
 
 def api_show_image(request):
     query = str(request.GET.get('photo_id'))
-    return render(request, 'api/index.html', context={"image": Photo.objects.get(photo_id=query)
-                                                      })
+    return render(request, 'api/index.html', context={"image": Photo.objects.get(photo_id=query)})

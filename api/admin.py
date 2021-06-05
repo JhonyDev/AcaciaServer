@@ -4,5 +4,5 @@ from .models import *
 
 admin.site.register(Photo)
 admin.site.register(User)
-admin.site.register(Liked)
+admin.site.register(Expression)
 admin.site.register(Interest)

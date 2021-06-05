@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import User, Photo, Interest, Liked
+from .models import User, Photo, Interest, Expression
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,6 +26,6 @@ class InterestSerializer(serializers.ModelSerializer):
 
 class LikedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Liked
+        model = Expression
         # fields = ('fixture_id', 'full_time_result')
         fields = '__all__'

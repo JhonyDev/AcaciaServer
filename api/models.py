@@ -28,8 +28,11 @@ class Interest(models.Model):
     objects = models.Manager()
 
 
-class Liked(models.Model):
+class Expression(models.Model):
     who_liked = models.CharField(max_length=100)
     whom_liked = models.CharField(max_length=100)
-    like_fav = models.CharField(max_length=50, default='None')
+    exp = models.CharField(max_length=50, default='None')
+    whom_name = models.CharField(max_length=50, default='')
+    whom_work = models.CharField(max_length=50, default='')
+    profile_image = models.CharField(max_length=1000, default='')
     objects = models.Manager()
