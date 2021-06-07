@@ -7,6 +7,7 @@ class User(models.Model):
     name = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100)
     question = models.CharField(max_length=100)
+    verification_status = models.CharField(max_length=20, default='Unverified')
     about = models.CharField(max_length=100)
     interest = models.CharField(max_length=100)
     work = models.CharField(max_length=100)
@@ -18,6 +19,7 @@ class User(models.Model):
 
 class Photo(models.Model):
     user_id = models.CharField(max_length=100)
+    is_id = models.CharField(max_length=10, default="false")
     picture = models.ImageField(upload_to='pictures/%y/%m/%d/', max_length=255, null=False, blank=True)
     objects = models.Manager()
 
@@ -29,10 +31,13 @@ class Interest(models.Model):
 
 
 class Expression(models.Model):
+    who_name = models.CharField(max_length=50, default='')
+    who_profile_image = models.CharField(max_length=1000, default='')
     who_liked = models.CharField(max_length=100)
     whom_liked = models.CharField(max_length=100)
     exp = models.CharField(max_length=50, default='None')
     whom_name = models.CharField(max_length=50, default='')
     whom_work = models.CharField(max_length=50, default='')
     profile_image = models.CharField(max_length=1000, default='')
+    ver_status = models.CharField(max_length=10, default='Unverified')
     objects = models.Manager()
