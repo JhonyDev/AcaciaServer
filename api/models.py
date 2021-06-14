@@ -34,6 +34,7 @@ class Expression(models.Model):
     who_name = models.CharField(max_length=50, default='')
     who_profile_image = models.CharField(max_length=1000, default='')
     who_liked = models.CharField(max_length=100)
+    who_work = models.CharField(max_length=100, default='')
     whom_liked = models.CharField(max_length=100)
     exp = models.CharField(max_length=50, default='None')
     whom_name = models.CharField(max_length=50, default='')
