@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'AcaciaServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'AcaciaServer',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
+        'NAME': 'asdb',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '',
     }
