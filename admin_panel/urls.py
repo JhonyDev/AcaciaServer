@@ -3,3 +3,7 @@ from .views import (load)
 urlpatterns = [
     path('inflate/', load),
 ]
+
+
+
+
