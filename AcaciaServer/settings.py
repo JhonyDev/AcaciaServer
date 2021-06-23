@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-f+=i%l#7=6fi^r&3n$l423v(r9s2v0etacoa3^at&$$6mih-d5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['184.168.120.174', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -76,23 +76,23 @@ WSGI_APPLICATION = 'AcaciaServer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'myproject',
+#         'USER': 'myprojectuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
@@ -130,11 +130,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets/static/')
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static/'),
+]
+#
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
-#     os.path.join(BASE_DIR, 'static', 'appname'),
+#     '/Jhony Dev/PycharmProjects/AcaciaServer/static'
 # )
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
