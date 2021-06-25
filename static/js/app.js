@@ -1,6 +1,7 @@
 
 var btn = Document.getElementById('btn_login')
-var input = Document.getElementById('input')
+var iUserName = Document.getElementById('user_name')
+var iPassword = Document.getElementById('pass')
 
 
 btn.addEventListener("click", function(){
@@ -18,5 +19,4 @@ $.ajax({
     error: function(response){
         console.log(error)
     }
-
 })
