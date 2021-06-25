@@ -1,11 +1,12 @@
 
-var btn = Document.getElementById('btn_login')
-var iUserName = Document.getElementById('user_name')
-var iPassword = Document.getElementById('pass')
+var btn = document.getElementById('btn_login')
+var iUserName = document.getElementById('user_name')
+var iPassword = document.getElementById('pass')
 
 
 btn.addEventListener("click", function(){
-
+    console.log(iUserName.value)
+    console.log(iPassword.value)
 
 });
 
