@@ -5,7 +5,6 @@ $.ajax({
     type: 'GET',
     url: 'js/5',
     success: function(response){
-        console.log(response.data)
         const data = response.data
         const authStatus =  data.status
         if (authStatus != 1)
