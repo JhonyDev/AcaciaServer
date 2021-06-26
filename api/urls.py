@@ -7,6 +7,7 @@ urlpatterns = [
     path('post_user', api_post_user),
     path('post_interests', api_post_interest),
     path('post_like_fav', api_post_exp),
+    path('post_report', api_post_report),
 
     path('delete_interests', api_delete_interest),
     path('delete_photo', api_delete_photo),

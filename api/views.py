@@ -6,8 +6,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression
-from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer
+from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer, ReportSerializer
 
 
 @api_view(['POST', ])
@@ -19,6 +20,28 @@ def api_post_user(request):
         for user in users:
             user.delete()
     serializer = UserSerializer(user, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST', ])
+def api_post_report(request):
+    query = str(request.GET.get('user_email'))
+    report = ReportedAccounts()
+
+    print('Query :: ' + query)
+
+    reported_accounts = ReportedAccounts.objects.filter(user_email=query)
+    if reported_accounts:
+        for account in reported_accounts:
+            account.delete()
+
+    serializer = ReportSerializer(report, data=request.data)
+
+    print()
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

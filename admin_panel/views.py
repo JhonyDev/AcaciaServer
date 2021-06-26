@@ -4,7 +4,7 @@ import time
 from django.http import JsonResponse
 from django.views.generic import View, TemplateView
 
-from .models import AdminCred
+from .models import AdminCred, ReportedAccounts, PaidUsers
 
 
 # def load(request):
@@ -55,7 +55,14 @@ class AdminJson(View):
         for admin_cred in admin_creds:
             creds = admin_cred
 
-        return JsonResponse({'data': creds}, safe=False)
+        reported_accounts = list(ReportedAccounts.objects.values())
+        paid_users = list(PaidUsers.objects.values())
+
+        return JsonResponse(
+            {'data': creds,
+             'report': reported_accounts,
+             'paid_users': paid_users}
+            , safe=False)
 
 
 def expire(x, creds):

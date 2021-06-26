@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression
 
 
@@ -27,5 +28,12 @@ class InterestSerializer(serializers.ModelSerializer):
 class LikedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expression
+        # fields = ('fixture_id', 'full_time_result')
+        fields = '__all__'
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReportedAccounts
         # fields = ('fixture_id', 'full_time_result')
         fields = '__all__'
