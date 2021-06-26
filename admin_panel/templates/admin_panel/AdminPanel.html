@@ -95,6 +95,7 @@
 
 
 
+
     </style>
 
 </head>
@@ -200,7 +201,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                            <img class="img-profile rounded-circle" src="{% static 'img/undraw_profile.svg' %}">
+                            <img class="img-profile rounded-circle" id="original_image"
+                                 src="{% static 'img/undraw_profile.svg' %}"
+                                 data-original="{% static 'img/undraw_profile.svg' %}">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -234,7 +237,8 @@
                             <h3 class="m-0 font-weight-bold text-primary">Reported Account</h3>
                         </div>
                         <br>
-                         <div id="comments"></div>
+                        <div id="report_accounts"></div>
+                        <div id="paid_users"></div>
                         <br>
 
 
@@ -265,7 +269,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="{% static 'js/admin.js' %}"></script>
+<script src="{% static 'js/admin.js' %}">
+    DJANGO_STATIC_URL = '{{ STATIC_URL }}';
+
+
+</script>
+
+
+</script>
 
 </body>
 
