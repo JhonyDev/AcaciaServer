@@ -23,6 +23,7 @@ function reportAccount(pic, mail, name) {
         '<br>';
 }
 
+
 function paidUser(pic, mail, name) {
     return '<a class="" href="#" style="text-decoration: none;"> ' +
         '<div class="d-flex align-items-center">' +
