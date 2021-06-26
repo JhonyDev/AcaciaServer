@@ -36,7 +36,8 @@ btn.addEventListener("click", function() {
         console.log("Verification successful")
         result = success
     } else {
-        console.log("Verification failed")
+//        console.log("Verification failed")
+        swal("Opps!", "Invalid Username or Password!", "error");
         result = failed
     }
 
