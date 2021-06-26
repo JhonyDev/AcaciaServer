@@ -1,55 +1,58 @@
-function reportAccount(pic, mail, name) {
-    return '<a class="" href="#" style="text-decoration: none;"> ' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="mr-3">' +
+function paidUser(pic, mail, name) {
+    return '<table class="table" style="width:100%;">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td style="width:15%;">' +
         '<div class="icon-circle bg-primary">' +
-        '<img class="img-profile rounded-circle"' +
-        'src="' + pic + '"' +
-        'height="45px">' +
+        '<img class="img-profile rounded-circle" src="' + pic + '" height="45px" width="45px">' +
         '</div>' +
-        '</div>' +
-
+        '</td>' +
+        '<td style="width:85%;">' +
         '<div>' +
-        '<div class="small text-gray-500">' + name + '</div>' +
+        '<div class="small text-gray-500">' + name + '</div>' + '' +
         '<span class="font-weight-bold">' + mail + '</span>' +
         '</div>' +
-        '<div>' +
-        '<button type="button" class="btn btn-danger" style="margin-left: 40px">Remove' +
-        '</button>' +
-        '</div>' +
-        '</div>' +
-
-        '</a>' +
-        '<br>';
+        ' </td>' +
+        '  </tr>' +
+        ' </tbody>' +
+        ' </table>';
 }
 
 
-function paidUser(pic, mail, name) {
-    return '<a class="" href="#" style="text-decoration: none;"> ' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="mr-3">' +
+function reportAccount(pic, mail, name) {
+    return '<table class="table" style="width:100%;">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td style="width:15%;">' +
         '<div class="icon-circle bg-primary">' +
-        '<img class="img-profile rounded-circle"' +
-        'src="' + pic + '"' +
-        'height="45px">' +
+        '<img class="img-profile rounded-circle" src="' + pic + '" height="45px" width="45px">' +
         '</div>' +
-        '</div>' +
+        '</td>' +
+        '<td style="width:47%;">' +
         '<div>' +
-        '<div class="small text-gray-500"> ' + name + ' </div>' +
-        '<span class="font-weight-bold"> ' + mail + ' </span>' +
+        '<div class="small text-gray-500">' + name + '</div>' + '' +
+        '<span class="font-weight-bold">' + mail + '</span>' +
         '</div>' +
-        '</div>' +
-        '</a>' +
-        '<br>';
+        ' </td>' +
+        '<td style="width:47%;>"' +
+        '<div>' +
+        ' <button type="button" class="btn btn-danger" >Remove</button>' +
+        ' </div>' +
+        ' </td>' +
+        '  </tr>' +
+        ' </tbody>' +
+        ' </table>';
 }
 
 
 const liTotalUsers = document.getElementById('total_users');
 const liReportedAccounts = document.getElementById('reported_accounts');
 const title = document.getElementById('title_report');
+const userCount = document.getElementById('users_count');
 
 let reportedAccounts;
 let paidUsers;
+
 
 title.innerHTML = "Reported Accounts";
 
@@ -67,6 +70,8 @@ $.ajax({
             window.location.href = '/admin_panel';
 
         console.log(paidUsers);
+
+        userCount.innerHTML = response.total_users;
 
         reportedAccounts.forEach(reportedAccount =>
             $("#report_accounts").append(

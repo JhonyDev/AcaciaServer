@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.views.generic import View, TemplateView
 
 from .models import AdminCred, ReportedAccounts, PaidUsers
+from api.models import User
 
 
 # def load(request):
@@ -58,10 +59,13 @@ class AdminJson(View):
         reported_accounts = list(ReportedAccounts.objects.values())
         paid_users = list(PaidUsers.objects.values())
 
+        users = list(User.objects.all())
+
         return JsonResponse(
             {'data': creds,
              'report': reported_accounts,
-             'paid_users': paid_users}
+             'paid_users': paid_users,
+             'total_users': len(users)}
             , safe=False)
 
 
