@@ -42,11 +42,7 @@ var title = document.getElementById('title_report')
 
 var userAt = 1
 
-
-
-
 console.log('should print report account')
-
 
 $.ajax({
     type: 'GET',
@@ -65,13 +61,10 @@ for (let i = 0; i < 10; i++) {
 }
 
 liTotalUsers.addEventListener("click", function() {
-
     title.innerHTML = "Paid Users";
-
     for (let i = 0; i < 10; i++) {
         $("#paid_users").append(paidUsersHtml);
     }
-
     $("#report_accounts").empty();
 });
 
@@ -81,6 +74,4 @@ liReportedAccounts.addEventListener("click", function() {
         $("#report_accounts").append(reportAccountHtml);
     }
     $("#paid_users").empty();
-
 });
-
