@@ -30,6 +30,9 @@
     .container {
       margin-top: 100px
     }
+    .btn2 {
+      background-color: transparent;
+    }
 
     .counter-box {
       display: block;
@@ -96,6 +99,8 @@
 
 
 
+
+
     </style>
 
 </head>
@@ -129,18 +134,14 @@
                 </div>
             </a>
         </li>
-        <li class="nav-item active" style="margin-top:-10%;">
-            <a class="nav-link" href="">
-                <i class="fas fa-user"></i>
-                <span style="font-size:15px;">Total Users</span>
-            </a>
+        <li class="nav-item active unselectable" style="margin-top:-10%;">
+            <i class="fas fa-user" ></i>
+            <Button class="btn2" style="font-size:15px;" id="total_users">Total Users</Button>
         </li>
 
-        <li class="nav-item active">
-            <a class="nav-link" href="">
-                <i class="fas fa-redo"></i>
-                <span style="font-size:15px;">Report Accounts</span>
-            </a>
+        <li class="nav-item active unselectable">
+            <i class="fas fa-redo"></i>
+            <Button class="btn2" style="font-size:15px;" id="reported_accounts">Report Accounts</Button>
         </li>
 
         <hr>
@@ -234,7 +235,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12">
                         <div class="card-header py-3">
-                            <h3 class="m-0 font-weight-bold text-primary">Reported Account</h3>
+                            <h3 class="m-0 font-weight-bold text-primary" id="title_report">Reported Account</h3>
                         </div>
                         <br>
                         <div id="report_accounts"></div>
@@ -271,6 +272,8 @@
 
 <script src="{% static 'js/admin.js' %}">
     DJANGO_STATIC_URL = '{{ STATIC_URL }}';
+
+
 
 
 </script>

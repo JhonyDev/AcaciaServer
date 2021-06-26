@@ -1,9 +1,3 @@
-
-console.log('admin js')
-
-
-var element = document.getElementById('original_image').getAttribute("data-original")
-
 var reportAccountHtml = '<a class="" href="#" style="text-decoration: none;"> ' +
                             '<div class="d-flex align-items-center">' +
                                 '<div class="mr-3">' +
@@ -25,7 +19,6 @@ var reportAccountHtml = '<a class="" href="#" style="text-decoration: none;"> ' 
                         '</a>' +
                         '<br>';
 
-
 var paidUsersHtml = '<a class="" href="#" style="text-decoration: none;"> ' +
                             '<div class="d-flex align-items-center">' +
                                 '<div class="mr-3">' +
@@ -43,18 +36,17 @@ var paidUsersHtml = '<a class="" href="#" style="text-decoration: none;"> ' +
                         '</a>' +
                         '<br>';
 
+var liTotalUsers = document.getElementById('total_users')
+var liReportedAccounts = document.getElementById('reported_accounts')
+var title = document.getElementById('title_report')
 
-console.log(element)
+var userAt = 1
 
-for (let i = 0; i < 10; i++) {
-    $("#report_accounts").append(reportAccountHtml);
-}
-//
-//for (let i = 0; i < 10; i++) {
-//    $("#paid_users").append(paidUsersHtml);
-//}
+
+
 
 console.log('should print report account')
+
 
 $.ajax({
     type: 'GET',
@@ -65,8 +57,30 @@ $.ajax({
         if (authStatus != 1)
             window.location.href = '/admin_panel';
     },
-    error: function(response){
-//        console.log(error)
-    }
 })
+
+
+for (let i = 0; i < 10; i++) {
+        $("#paid_users").append(paidUsersHtml);
+}
+
+liTotalUsers.addEventListener("click", function() {
+
+    title.innerHTML = "Paid Users";
+
+    for (let i = 0; i < 10; i++) {
+        $("#paid_users").append(paidUsersHtml);
+    }
+
+    $("#report_accounts").empty();
+});
+
+liReportedAccounts.addEventListener("click", function() {
+    title.innerHTML = "Reported Accounts";
+    for (let i = 0; i < 10; i++) {
+        $("#report_accounts").append(reportAccountHtml);
+    }
+    $("#paid_users").empty();
+
+});
 
