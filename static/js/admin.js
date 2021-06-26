@@ -44,6 +44,8 @@ var userAt = 1
 
 console.log('should print report account')
 
+title.innerHTML = "Reported Accounts";
+
 $.ajax({
     type: 'GET',
     url: 'js/5',
@@ -57,8 +59,9 @@ $.ajax({
 
 
 for (let i = 0; i < 10; i++) {
-        $("#paid_users").append(paidUsersHtml);
+    $("#report_accounts").append(reportAccountHtml);
 }
+
 
 liTotalUsers.addEventListener("click", function() {
     title.innerHTML = "Paid Users";
