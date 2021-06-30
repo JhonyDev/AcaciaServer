@@ -33,9 +33,12 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
+
     'admin_panel',
     'api.apps.ApiConfig',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -82,7 +85,7 @@ WSGI_APPLICATION = 'AcaciaServer.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+#
 
 
 DATABASES = {

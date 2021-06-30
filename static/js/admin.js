@@ -36,7 +36,7 @@ function reportAccount(pic, mail, name) {
         ' </td>' +
         '<td style="width:47%;>"' +
         '<div>' +
-        ' <button type="button" class="btn btn-danger" >Remove</button>' +
+        ' <button id="' + mail + '" onclick="click(this.id)" type="button" class="btn btn-danger" >Remove</button>' +
         ' </div>' +
         ' </td>' +
         '  </tr>' +
@@ -55,6 +55,12 @@ let paidUsers;
 
 
 title.innerHTML = "Reported Accounts";
+
+
+function click(id) {
+    console.log(id)
+}
+
 
 $.ajax({
     type: 'GET',
