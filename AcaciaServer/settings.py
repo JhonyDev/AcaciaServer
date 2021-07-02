@@ -37,7 +37,6 @@ INSTALLED_APPS = [
 
     'admin_panel',
     'api.apps.ApiConfig',
-    'livereload',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,14 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 ]
-MIDDLEWARE_CLASSES = (
-    'livereload.middleware.LiveReloadScript',
-)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'livereload.middleware.LiveReloadScript',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
