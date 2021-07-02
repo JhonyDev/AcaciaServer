@@ -13,6 +13,7 @@ class AdminCred(models.Model):
         return str(self.pk)
 
 
+
 class ReportedAccounts(models.Model):
     user_image = models.CharField(max_length=1000)
     user_name = models.CharField(max_length=50)
