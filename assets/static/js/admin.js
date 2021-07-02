@@ -36,13 +36,14 @@ function reportAccount(pic, mail, name) {
         ' </td>' +
         '<td style="width:47%;>"' +
         '<div>' +
-        ' <a href="button_click/' + mail + '" type="button" class="btn btn-danger" >Remove</a>' +
+        ' <button id="' + mail + '" onclick="click(this.id)" type="button" class="btn btn-danger" >Remove</button>' +
         ' </div>' +
         ' </td>' +
         '  </tr>' +
         ' </tbody>' +
         ' </table>';
 }
+
 
 
 const liTotalUsers = document.getElementById('total_users');
@@ -54,8 +55,10 @@ let reportedAccounts;
 let paidUsers;
 
 
-title.innerHTML = "Reported Accounts";
+console.log("new asdasdasdasdasdasdasddfasdfadsfasdfvxzcvscxdvxzcvadsfvasdv");
 
+
+title.innerHTML = "Reported Accounts";
 
 function click(id) {
     console.log(id)
@@ -87,6 +90,7 @@ $.ajax({
 
     },
 });
+
 
 liTotalUsers.addEventListener("click", function () {
     title.innerHTML = "Paid Users";

@@ -11,7 +11,7 @@ let givenPassword;
 const success = 1;
 const failed = 0;
 
-
+console.log("this is new change");
 
 $.ajax({
     type: 'GET',
@@ -27,6 +27,8 @@ $.ajax({
     }
 })
 
+
+console.log("newwww")
 
 btn.addEventListener("click", function () {
     strPassword = iPassword.value;

@@ -1,7 +1,8 @@
 import threading
 import time
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.views.generic import View, TemplateView
 
 from .models import AdminCred, ReportedAccounts, PaidUsers
@@ -67,6 +68,17 @@ class AdminJson(View):
              'paid_users': paid_users,
              'total_users': len(users)}
             , safe=False)
+
+
+class ButtonClick(View):
+    def get(self, *args, **kwargs):
+        print(kwargs)
+
+        reported_account = ReportedAccounts.objects.filter(user_email=kwargs.get('result'))
+        for account in reported_account:
+            account.delete()
+
+        return HttpResponseRedirect('/admin_panel/dashboard/')
 
 
 def expire(x, creds):
