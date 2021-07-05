@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.views.generic import View, TemplateView
 
-from .models import AdminCred, ReportedAccounts, PaidUsers
+from .models import *
 from api.models import User
 
 
@@ -59,13 +59,22 @@ class AdminJson(View):
 
         reported_accounts = list(ReportedAccounts.objects.values())
         paid_users = list(PaidUsers.objects.values())
-
+        # unpaid_users = list(UnPaidUsers.objects.values())
+        # verify_users = list(VerifyUsers.objects.values())
+        # unverify_users = list(UnVerifyUsers.objects.values())
+        #
         users = list(User.objects.all())
+
+        print('paid_users')
+        print(paid_users)
 
         return JsonResponse(
             {'data': creds,
              'report': reported_accounts,
              'paid_users': paid_users,
+             'unpaid_users': paid_users,
+             'verified_users': paid_users,
+             'unverified_users': paid_users,
              'total_users': len(users)}
             , safe=False)
 

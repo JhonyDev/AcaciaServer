@@ -13,9 +13,8 @@ class AdminCred(models.Model):
         return str(self.pk)
 
 
-
 class ReportedAccounts(models.Model):
-    user_image = models.CharField(max_length=1000)
+    user_image = models.CharField(max_length=2000)
     user_name = models.CharField(max_length=50)
     user_email = models.CharField(max_length=50)
 
@@ -23,7 +22,31 @@ class ReportedAccounts(models.Model):
 
 
 class PaidUsers(models.Model):
-    user_image = models.CharField(max_length=1000)
+    user_image = models.CharField(max_length=2000)
+    user_name = models.CharField(max_length=50)
+    user_email = models.CharField(max_length=50)
+
+    objects = models.Manager()
+
+
+class UnPaidUsers(models.Model):
+    user_image = models.CharField(max_length=2000)
+    user_name = models.CharField(max_length=50)
+    user_email = models.CharField(max_length=50)
+
+    objects = models.Manager()
+
+
+class VerifyUsers(models.Model):
+    user_image = models.CharField(max_length=2000)
+    user_name = models.CharField(max_length=50)
+    user_email = models.CharField(max_length=50)
+
+    objects = models.Manager()
+
+
+class UnVerifyUsers(models.Model):
+    user_image = models.CharField(max_length=2000)
     user_name = models.CharField(max_length=50)
     user_email = models.CharField(max_length=50)
 

@@ -1,26 +1,26 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html dir="ltr" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
     <title>Report Account</title>
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    <script crossorigin="anonymous"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
@@ -91,6 +91,68 @@
         .counter-box.colored .counter {
             color: #fff
         }
+       .card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
+
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+  }
+
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
+
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }
+
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }
+
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }
+
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
+
+  .card-counter .count-numbers{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 32px;
+    display: block;
+  }
+
+  .card-counter .count-name{
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
+
+
+
+
     </style>
 
 </head>
@@ -105,33 +167,44 @@
             <div class="sidebar-brand-text mx-3" style="font-size:20px;margin-top:10%;">Django Administration</div>
         </a>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+
+
         <li class="nav-item active" style="margin-top:10%;">
-
-            <div class="counter-box-list" style="text-align:center; margin-left:-10px;">
-                <ul style="list-style-type:none;">
-                    <li class="unselectable">
-                        <i class="fa fa-user fa-3x"></i>
-                    </li>
-                    <li class="unselectable">
-                        <span class="counter" style="font-size:15px;margin-top:10px">Total User</span>
-                    </li>
-                    <li class="unselectable">
-                        <span id="users_count" class="counter" style="font-size:20px;">7000</span>
-                    </li>
-                </ul>
-            </div>
-
+            <p class="nav-link" id="Dashboard">
+                <i class="fas fa-user mr-2"></i>
+                <Button class="btn2" style="font-size:15px;">Dashboard</Button>
+            </p>
         </li>
 
-        <li class="nav-item active" style="margin-top:10%;">
+        <li class="nav-item active mt-n4" style="margin-top:10%;">
             <p class="nav-link" id="total_users">
                 <i class="fas fa-user mr-2"></i>
                 <Button class="btn2" style="font-size:15px;">Paid Users</Button>
             </p>
         </li>
 
-        <li class="nav-item active" style="margin-top:0%;">
+        <li class="nav-item active mt-n4" style="margin-top:10%;">
+            <p class="nav-link" id="unpaid_user">
+                <i class="fas fa-user mr-2"></i>
+                <Button class="btn2" style="font-size:15px;">Unpaid Users</Button>
+            </p>
+        </li>
+
+        <li class="nav-item active mt-n4" style="margin-top:10%;">
+            <p class="nav-link" id="verified_accounts">
+                <i class="fas fa-user mr-2"></i>
+                <Button class="btn2" style="font-size:15px;">Verified Users</Button>
+            </p>
+        </li>
+
+        <li class="nav-item active mt-n4" style="margin-top:10%;">
+            <p class="nav-link" id="unverified_accounts">
+                <i class="fas fa-user mr-2"></i>
+                <Button class="btn2" style="font-size:15px;">Unverified Users</Button>
+            </p>
+        </li>
+
+        <li class="nav-item active mt-n4" style="margin-top:0%;">
             <p class="nav-link" id="reported_accounts">
                 <i class="fas fa-redo mr-2"></i>
                 <Button class="btn2" style="font-size:15px; ">Report Account</Button>
@@ -153,7 +226,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div class="d-flex flex-column" id="content-wrapper">
 
         <!-- Main Content -->
         <div id="content">
@@ -162,7 +235,7 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
                     <i class="fa fa-bars"></i>
                 </button>
 
@@ -174,13 +247,13 @@
                     <li class="nav-item dropdown no-arrow d-sm-none">
 
                         <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
+                        <div aria-labelledby="searchDropdown"
+                             class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in">
                             <form class="form-inline mr-auto w-100 navbar-search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
+                                    <input aria-describedby="basic-addon2" aria-label="Search"
+                                           class="form-control bg-light border-0 small" placeholder="Search for..."
+                                           type="text">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="fas fa-search fa-sm"></i>
@@ -195,21 +268,23 @@
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#" id="userDropdown" role="button">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                            <img class="img-profile rounded-circle" id="original_image"
-                                 src="{% static 'img/undraw_profile.svg' %}"
-                                 data-original="{% static 'img/undraw_profile.svg' %}">
+                            <img class="img-profile rounded-circle"
+                                 data-original="{% static 'img/undraw_profile.svg' %}"
+                                 id="original_image"
+                                 src="{% static 'img/undraw_profile.svg' %}">
                         </a>
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
+                        <div aria-labelledby="userDropdown"
+                             class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
                             <a class="dropdown-item" href="Password.html">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change Password
                             </a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
@@ -234,14 +309,20 @@
                             <h3 class="m-0 font-weight-bold text-primary" id="title_report">Reported Account</h3>
                         </div>
                         <br>
-                        <div id="report_accounts"></div>
+
+                        <div id="dash"></div>
                         <div id="paid_users"></div>
+                        <div id="unpaid"></div>
+                        <div id="verified"></div>
+                        <div id="unverified"></div>
+                        <div id="report_accounts"></div>
 
 
                         <br>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
@@ -250,24 +331,24 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="http://ij-bretagne.com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--<script src="http://ij-bretagne.com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <!-- Page level plugins -->
 <script src="https://www.boffinaccess.com/public/plugins/chart.js/Chart.min.js"></script>
 <!--&lt;!&ndash; Core plugin JavaScript&ndash;&gt;-->
 <script src="http://ij-bretagne.com/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-<!-- Custom scripts for all pages-->
+<!--&lt;!&ndash; Custom scripts for all pages&ndash;&gt;-->
 <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="{% static 'js/admin.js' %}"></script>
+<!--<script src="js/sb-admin-2.min.js"></script>-->
 
 
 </body>
 
 </body>
 
-
-< /html>
+</html>
