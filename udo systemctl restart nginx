@@ -1,0 +1,19 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+     Loaded: loaded (/etc/systemd/system/gunicorn.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Tue 2021-07-06 22:15:20 UTC; 10s ago
+   Main PID: 386937 (gunicorn)
+      Tasks: 4 (limit: 1136)
+     Memory: 93.1M
+     CGroup: /system.slice/gunicorn.service
+             ├─386937 /home/adminuser/AcaciaServer/lenv/bin/python3 /home/adminuser/AcaciaServer/lenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/adminuser/AcaciaServer/AcaciaServer.sock AcaciaServer.wsgi:application
+             ├─386949 /home/adminuser/AcaciaServer/lenv/bin/python3 /home/adminuser/AcaciaServer/lenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/adminuser/AcaciaServer/AcaciaServer.sock AcaciaServer.wsgi:application
+             ├─386950 /home/adminuser/AcaciaServer/lenv/bin/python3 /home/adminuser/AcaciaServer/lenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/adminuser/AcaciaServer/AcaciaServer.sock AcaciaServer.wsgi:application
+             └─386951 /home/adminuser/AcaciaServer/lenv/bin/python3 /home/adminuser/AcaciaServer/lenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/adminuser/AcaciaServer/AcaciaServer.sock AcaciaServer.wsgi:application
+
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net systemd[1]: Started gunicorn daemon.
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386937]: [2021-07-06 22:15:20 +0000] [386937] [INFO] Starting gunicorn 20.1.0
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386937]: [2021-07-06 22:15:20 +0000] [386937] [INFO] Listening at: unix:/home/adminuser/AcaciaServer/AcaciaServer.sock (386937)
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386937]: [2021-07-06 22:15:20 +0000] [386937] [INFO] Using worker: sync
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386949]: [2021-07-06 22:15:20 +0000] [386949] [INFO] Booting worker with pid: 386949
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386950]: [2021-07-06 22:15:20 +0000] [386950] [INFO] Booting worker with pid: 386950
+Jul 06 22:15:20 ip-184-168-120-174.ip.secureserver.net gunicorn[386951]: [2021-07-06 22:15:20 +0000] [386951] [INFO] Booting worker with pid: 386951
