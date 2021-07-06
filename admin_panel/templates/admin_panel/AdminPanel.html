@@ -227,13 +227,12 @@
         }
 
 
-
         @media (max-width: 1028px) {
             .bodies {
                 margin-left: 0;
             }
-            .closebtn
-            {
+
+            .sidebars .closebtn {
                 opacity: 1;
             }
 
@@ -247,36 +246,37 @@
 
 <div id="mySidebar" class="sidebars">
 
-    <img alt="" class="" height="130px" src="{% static 'img/logo.png' %}" style="margin-top: -60px" />
+    <img alt="" class="" height="130px" src="{% static 'img/logo.png' %}" style="margin-top: -35px"/>
+
     <a id="btn_close" class="closebtn">×</a>
 
     <p class="nav-link" id="Dashboard">
-        <i class="fas fa-user mr-2"></i>
+        <i class="fas fa-bars mr-2"></i>
         <Button class="btn2" style="font-size:15px;">Dashboard</Button>
     </p>
 
     <p class="nav-link" id="total_users">
-        <i class="fas fa-user mr-2"></i>
+        <i class="fas fa-user-plus mr-2"></i>
         <Button class="btn2" style="font-size:15px;">Paid Users</Button>
     </p>
 
     <p class="nav-link" id="unpaid_user">
-        <i class="fas fa-user mr-2"></i>
+        <i class="fas fa-user-times mr-2"></i>
         <Button class="btn2" style="font-size:15px;">Unpaid Users</Button>
     </p>
 
     <p class="nav-link" id="verified_accounts">
-        <i class="fas fa-user mr-2"></i>
+        <i class="fas fa-check-circle mr-2"></i>
         <Button class="btn2" style="font-size:15px;">Verified Users</Button>
     </p>
 
     <p class="nav-link" id="unverified_accounts">
-        <i class="fas fa-user mr-2"></i>
+        <i class="fas fa-times-circle mr-2"></i>
         <Button class="btn2" style="font-size:15px;">Unverified Users</Button>
     </p>
 
     <p class="nav-link" id="reported_accounts">
-        <i class="fas fa-redo mr-2"></i>
+        <i class="fas fa-exclamation-triangle mr-2"></i>
         <Button class="btn2" style="font-size:15px; ">Report Account</Button>
     </p>
 

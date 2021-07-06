@@ -34,9 +34,8 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-
-    'admin_panel',
     'api.apps.ApiConfig',
+    'admin_panel.apps.AdminPanelConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

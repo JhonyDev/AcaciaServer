@@ -63,10 +63,18 @@ class AdminJson(View):
 
         reported_accounts = list(ReportedAccounts.objects.values())
         paid_users = list(PaidUsers.objects.values())
-        # unpaid_users = list(UnPaidUsers.objects.values())
-        # verify_users = list(VerifyUsers.objects.values())
-        # unverify_users = list(UnVerifyUsers.objects.values())
-        #
+        unpaid_users = list(UnPaidUsers.objects.values())
+        users = list(User.objects.values())
+
+        verified_users = []
+        unverified_users = []
+
+        for user in users:
+            if user.get('verification_status') == 'Verified':
+                verified_users.append(user)
+            else:
+                unverified_users.append(user)
+
         users = list(User.objects.all())
 
         print('paid_users')
@@ -76,10 +84,22 @@ class AdminJson(View):
             {'data': creds,
              'report': reported_accounts,
              'paid_users': paid_users,
-             'unpaid_users': paid_users,
-             'verified_users': paid_users,
-             'unverified_users': paid_users,
+             'unpaid_users': unpaid_users,
+             'verified_users': verified_users,
+             'unverified_users': unverified_users,
              'total_users': len(users)}
+            , safe=False)
+
+
+class PassJson(View):
+    def get(self, *args, **kwargs):
+        json_admin = None
+        admin_cred = list(AdminCred.objects.values())
+        for admin in admin_cred:
+            json_admin = admin
+            break
+        return JsonResponse(
+            {'data': json_admin}
             , safe=False)
 
 
@@ -94,6 +114,15 @@ class ButtonClick(View):
         return HttpResponseRedirect('/admin_panel/dashboard/')
 
 
+class NewPass(View):
+    def get(self, *args, **kwargs):
+        new_password = kwargs.get('result')
+        admin_cred = AdminCred.objects.get(user_name='admin')
+        admin_cred.password = new_password
+        admin_cred.save()
+        return HttpResponseRedirect('/admin_panel/dashboard/password/')
+
+
 def expire(x, creds):
     print('thread running')
     time.sleep(5 * 60)
@@ -101,4 +130,3 @@ def expire(x, creds):
     temp = AdminCred.objects.get(pk=creds.get('id'))
     temp.status = 0
     temp.save()
-

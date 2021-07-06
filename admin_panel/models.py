@@ -35,19 +35,3 @@ class UnPaidUsers(models.Model):
     user_email = models.CharField(max_length=50)
 
     objects = models.Manager()
-
-
-class VerifyUsers(models.Model):
-    user_image = models.CharField(max_length=2000)
-    user_name = models.CharField(max_length=50)
-    user_email = models.CharField(max_length=50)
-
-    objects = models.Manager()
-
-
-class UnVerifyUsers(models.Model):
-    user_image = models.CharField(max_length=2000)
-    user_name = models.CharField(max_length=50)
-    user_email = models.CharField(max_length=50)
-
-    objects = models.Manager()

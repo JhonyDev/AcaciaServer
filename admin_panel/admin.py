@@ -7,6 +7,3 @@ admin.site.register(AdminCred)
 admin.site.register(ReportedAccounts)
 admin.site.register(PaidUsers)
 admin.site.register(UnPaidUsers)
-admin.site.register(VerifyUsers)
-admin.site.register(UnVerifyUsers)
-
