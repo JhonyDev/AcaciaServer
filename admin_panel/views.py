@@ -2,11 +2,11 @@ import threading
 import time
 
 from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import View, TemplateView
 
 from .models import *
-from api.models import User
+from api.models import *
 
 
 # def load(request):
@@ -22,6 +22,10 @@ from api.models import User
 
 class MainView(TemplateView):
     template_name = 'admin_panel/Login.html'
+
+
+class PassView(TemplateView):
+    template_name = 'admin_panel/Password.html'
 
 
 class DashboardView(TemplateView):
@@ -97,3 +101,4 @@ def expire(x, creds):
     temp = AdminCred.objects.get(pk=creds.get('id'))
     temp.status = 0
     temp.save()
+

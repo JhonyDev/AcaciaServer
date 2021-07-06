@@ -91,136 +91,210 @@
         .counter-box.colored .counter {
             color: #fff
         }
-       .card-counter{
-    box-shadow: 2px 2px 10px #DADADA;
-    margin: 5px;
-    padding: 20px 10px;
-    background-color: #fff;
-    height: 100px;
-    border-radius: 5px;
-    transition: .3s linear all;
-  }
 
-  .card-counter:hover{
-    box-shadow: 4px 4px 20px #DADADA;
-    transition: .3s linear all;
-  }
+        .card-counter {
+            box-shadow: 2px 2px 10px #DADADA;
+            margin: 5px;
+            padding: 20px 10px;
+            background-color: #fff;
+            height: 100px;
+            border-radius: 5px;
+            transition: .3s linear all;
+        }
 
-  .card-counter.primary{
-    background-color: #007bff;
-    color: #FFF;
-  }
+        .card-counter:hover {
+            box-shadow: 4px 4px 20px #DADADA;
+            transition: .3s linear all;
+        }
 
-  .card-counter.danger{
-    background-color: #ef5350;
-    color: #FFF;
-  }
+        .card-counter.primary {
+            background-color: #007bff;
+            color: #FFF;
+        }
 
-  .card-counter.success{
-    background-color: #66bb6a;
-    color: #FFF;
-  }
+        .card-counter.danger {
+            background-color: #ef5350;
+            color: #FFF;
+        }
 
-  .card-counter.info{
-    background-color: #26c6da;
-    color: #FFF;
-  }
+        .card-counter.success {
+            background-color: #66bb6a;
+            color: #FFF;
+        }
 
-  .card-counter i{
-    font-size: 5em;
-    opacity: 0.2;
-  }
+        .card-counter.info {
+            background-color: #26c6da;
+            color: #FFF;
+        }
 
-  .card-counter .count-numbers{
-    position: absolute;
-    right: 35px;
-    top: 20px;
-    font-size: 32px;
-    display: block;
-  }
+        .card-counter i {
+            font-size: 5em;
+            opacity: 0.2;
+        }
 
-  .card-counter .count-name{
-    position: absolute;
-    right: 35px;
-    top: 65px;
-    font-style: italic;
-    text-transform: capitalize;
-    opacity: 0.5;
-    display: block;
-    font-size: 18px;
-  }
+        .card-counter .count-numbers {
+            position: absolute;
+            right: 35px;
+            top: 20px;
+            font-size: 32px;
+            display: block;
+        }
+
+        .card-counter .count-name {
+            position: absolute;
+            right: 35px;
+            top: 65px;
+            font-style: italic;
+            text-transform: capitalize;
+            opacity: 0.5;
+            display: block;
+            font-size: 18px;
+        }
+
+
+        .sidebars {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #022E57;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebars a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebars a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebars .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            opacity: 0;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #284E78;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidebars {
+                padding-top: 15px;
+                width: 0;
+            }
+
+            .sidebars a {
+                font-size: 18px;
+            }
+
+            .bodies {
+                margin-left: 0;
+            }
+
+        }
+
+        .bodies {
+            margin-left: 250px;
+        }
 
 
 
+        @media (max-width: 1028px) {
+            .bodies {
+                margin-left: 0;
+            }
+            .closebtn
+            {
+                opacity: 1;
+            }
+
+        }
 
     </style>
 
 </head>
 
 <body>
+
+<div id="mySidebar" class="sidebars">
+
+    <img alt="" class="" height="130px" src="{% static 'img/logo.png' %}" style="margin-top: -60px" />
+    <a id="btn_close" class="closebtn">×</a>
+
+    <p class="nav-link" id="Dashboard">
+        <i class="fas fa-user mr-2"></i>
+        <Button class="btn2" style="font-size:15px;">Dashboard</Button>
+    </p>
+
+    <p class="nav-link" id="total_users">
+        <i class="fas fa-user mr-2"></i>
+        <Button class="btn2" style="font-size:15px;">Paid Users</Button>
+    </p>
+
+    <p class="nav-link" id="unpaid_user">
+        <i class="fas fa-user mr-2"></i>
+        <Button class="btn2" style="font-size:15px;">Unpaid Users</Button>
+    </p>
+
+    <p class="nav-link" id="verified_accounts">
+        <i class="fas fa-user mr-2"></i>
+        <Button class="btn2" style="font-size:15px;">Verified Users</Button>
+    </p>
+
+    <p class="nav-link" id="unverified_accounts">
+        <i class="fas fa-user mr-2"></i>
+        <Button class="btn2" style="font-size:15px;">Unverified Users</Button>
+    </p>
+
+    <p class="nav-link" id="reported_accounts">
+        <i class="fas fa-redo mr-2"></i>
+        <Button class="btn2" style="font-size:15px; ">Report Account</Button>
+    </p>
+
+</div>
+
 <div id="wrapper">
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-            <div class="sidebar-brand-text mx-3" style="font-size:20px;margin-top:10%;">Django Administration</div>
-        </a>
 
 
+    <hr>
+    <!-- Divider -->
 
-        <li class="nav-item active" style="margin-top:10%;">
-            <p class="nav-link" id="Dashboard">
-                <i class="fas fa-user mr-2"></i>
-                <Button class="btn2" style="font-size:15px;">Dashboard</Button>
-            </p>
-        </li>
-
-        <li class="nav-item active mt-n4" style="margin-top:10%;">
-            <p class="nav-link" id="total_users">
-                <i class="fas fa-user mr-2"></i>
-                <Button class="btn2" style="font-size:15px;">Paid Users</Button>
-            </p>
-        </li>
-
-        <li class="nav-item active mt-n4" style="margin-top:10%;">
-            <p class="nav-link" id="unpaid_user">
-                <i class="fas fa-user mr-2"></i>
-                <Button class="btn2" style="font-size:15px;">Unpaid Users</Button>
-            </p>
-        </li>
-
-        <li class="nav-item active mt-n4" style="margin-top:10%;">
-            <p class="nav-link" id="verified_accounts">
-                <i class="fas fa-user mr-2"></i>
-                <Button class="btn2" style="font-size:15px;">Verified Users</Button>
-            </p>
-        </li>
-
-        <li class="nav-item active mt-n4" style="margin-top:10%;">
-            <p class="nav-link" id="unverified_accounts">
-                <i class="fas fa-user mr-2"></i>
-                <Button class="btn2" style="font-size:15px;">Unverified Users</Button>
-            </p>
-        </li>
-
-        <li class="nav-item active mt-n4" style="margin-top:0%;">
-            <p class="nav-link" id="reported_accounts">
-                <i class="fas fa-redo mr-2"></i>
-                <Button class="btn2" style="font-size:15px; ">Report Account</Button>
-            </p>
-        </li>
+    <!--    <hr class="sidebar-divider d-none d-md-block">-->
+    <hr>
 
 
-        <hr>
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-        <hr>
-
-
-        <!--      <div class="text-center d-none d-md-inline">-->
-        <!--        <button class="rounded-circle border-0" id="sidebarToggle"></button>-->
-        <!--      </div>-->
+    <!--      <div class="text-center d-none d-md-inline">-->
+    <!--        <button class="rounded-circle border-0" id="sidebarToggle"></button>-->
+    <!--      </div>-->
 
     </ul>
     <!-- End of Sidebar -->
@@ -235,11 +309,11 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
-                    <i class="fa fa-bars"></i>
-                </button>
+                <!--                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">-->
+                <!--                    <i class="fa fa-bars"></i>-->
+                <!--                </button>-->
 
-
+                <button id="btn_open" class="openbtn">☰</button>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -280,7 +354,7 @@
                         <!-- Dropdown - User Information -->
                         <div aria-labelledby="userDropdown"
                              class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-                            <a class="dropdown-item" href="Password.html">
+                            <a class="dropdown-item" href="password/">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change Password
                             </a>
@@ -305,17 +379,18 @@
                 <!-- Content Row -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3" style="margin-left: 22%">
                             <h3 class="m-0 font-weight-bold text-primary" id="title_report">Reported Account</h3>
                         </div>
                         <br>
 
-                        <div id="dash"></div>
-                        <div id="paid_users"></div>
-                        <div id="unpaid"></div>
-                        <div id="verified"></div>
-                        <div id="unverified"></div>
-                        <div id="report_accounts"></div>
+
+                        <div id="dash" class="bodies"></div>
+                        <div id="paid_users" class="bodies"></div>
+                        <div id="unpaid" class="bodies"></div>
+                        <div id="verified" class="bodies"></div>
+                        <div id="unverified" class="bodies"></div>
+                        <div id="report_accounts" class="bodies"></div>
 
 
                         <br>
@@ -327,6 +402,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- End Reported Account Section -->
 
 <!-- Bootstrap core JavaScript-->

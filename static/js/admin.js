@@ -1,59 +1,60 @@
 
+
 function dashboard() {
-     return  '<div class="container mt-4">' +
-'             <div class="row">' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter info">' +
-'                            <i class="fa fa-users"></i>' +
-'                            <span class="count-numbers">35</span>' +
-'                            <span class="count-name">Total User</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter primary">' +
-'                            <i class="fa fa-user"></i>' +
-'                            <span class="count-numbers">12</span>' +
-'                            <span class="count-name">Paid User</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter danger">' +
-'                            <i class="fa fa-user"></i>' +
-'                            <span class="count-numbers">599</span>' +
-'                            <span class="count-name">Un-Paid User</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter success">' +
-'                            <i class="fa fa-database"></i>' +
-'                            <span class="count-numbers">6875</span>' +
-'                            <span class="count-name">Verified Account</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter success">' +
-'                            <i class="fa fa-database"></i>' +
-'                            <span class="count-numbers">6875</span>' +
-'                            <span class="count-name">Un-Verified Account</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'                    <div class="col-md-3">' +
-'                        <div class="card-counter success">' +
-'                            <i class="fa fa-database"></i>' +
-'                            <span class="count-numbers">6875</span>' +
-'                            <span class="count-name">Reported Account</span>' +
-'                        </div>' +
-'                    </div>' +
-'' +
-'' +
-'                </div>' +
-'            </div>';
+    return '<div class="container mt-4">' +
+        '             <div class="row">' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter info">' +
+        '                            <i class="fa fa-users"></i>' +
+        '                            <span class="count-numbers">35</span>' +
+        '                            <span class="count-name">Total User</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter primary">' +
+        '                            <i class="fa fa-user"></i>' +
+        '                            <span class="count-numbers">12</span>' +
+        '                            <span class="count-name">Paid User</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter danger">' +
+        '                            <i class="fa fa-user"></i>' +
+        '                            <span class="count-numbers">599</span>' +
+        '                            <span class="count-name">Un-Paid User</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter success">' +
+        '                            <i class="fa fa-database"></i>' +
+        '                            <span class="count-numbers">6875</span>' +
+        '                            <span class="count-name">Verified Account</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter success">' +
+        '                            <i class="fa fa-database"></i>' +
+        '                            <span class="count-numbers">6875</span>' +
+        '                            <span class="count-name">Un-Verified Account</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '                    <div class="col-md-3">' +
+        '                        <div class="card-counter success">' +
+        '                            <i class="fa fa-database"></i>' +
+        '                            <span class="count-numbers">6875</span>' +
+        '                            <span class="count-name">Reported Account</span>' +
+        '                        </div>' +
+        '                    </div>' +
+        '' +
+        '' +
+        '                </div>' +
+        '            </div>';
 }
 
 function paidUser(pic, mail, name) {
@@ -139,7 +140,6 @@ function Un_verified(pic, mail, name) {
 
 
 
-
 function reportAccount(pic, mail, name) {
     return '<table class="table" style="width:100%;">' +
         '<tbody>' +
@@ -180,13 +180,13 @@ let reportedAccounts;
 let paidUsers;
 let unpaidUsers;
 let verifies;
-let unverified;
+let un_verified;
 
 
 title.innerHTML = "Dashboard";
- $("#dash").empty();
-  $("#dash").append(
-            dashboard());
+$("#dash").empty();
+$("#dash").append(
+    dashboard());
 
 $.ajax({
     type: 'GET',
@@ -211,18 +211,17 @@ $.ajax({
         userCount.innerHTML = response.total_users;
 
 
-
     },
 });
 
 liDash_Board.addEventListener("click", function () {
     console.log("Dash");
 
-  title.innerHTML = "Dashboard";
+    title.innerHTML = "Dashboard";
 
     $("#dash").empty();
-     $("#dash").append(
-            dashboard());
+    $("#dash").append(
+        dashboard());
 
     $("#paid_users").empty();
     $("#unpaid").empty();
@@ -233,9 +232,9 @@ liDash_Board.addEventListener("click", function () {
 
 
 liTotalUsers.addEventListener("click", function () {
-    console.log("total clicked  " + typeof(paidUsers));
+    console.log("total clicked  " + typeof (paidUsers));
 
-  title.innerHTML = "Paid Users";
+    title.innerHTML = "Paid Users";
 
     $("#dash").empty();
     $("#unpaid").empty();
@@ -257,7 +256,7 @@ liUnpaidUser.addEventListener("click", function () {
     console.log("unpaid");
     title.innerHTML = "Unpaid User";
     $("#unpaid").empty();
-     $("#dash").empty();
+    $("#dash").empty();
     $("#paid_users").empty();
     $("#verified").empty();
     $("#unverified").empty();
@@ -267,7 +266,6 @@ liUnpaidUser.addEventListener("click", function () {
             unpaidUser(unpaidUsers.user_image, unpaidUsers.user_email,
                 unpaidUsers.user_name))
     );
-
 
 
 });
@@ -295,19 +293,17 @@ liUnVerify.addEventListener("click", function () {
     console.log("unverify clicked");
     title.innerHTML = "Unverified User";
     $("unverified").empty();
-     $("#dash").empty();
+    $("#dash").empty();
     $("#paid_users").empty();
     $("#unpaid").empty();
     $("#verified").empty();
     $("#report_accounts").empty();
 
-    reportedAccounts.forEach(reportedAccount =>
+    un_verified.forEach(b =>
         $("#unverified").append(
-            Un_verified(reportedAccount.user_image, reportedAccount.user_email,
-                reportedAccount.user_name))
+            Un_verified(b.user_image, b.user_email,
+                b.user_name))
     );
-
-
 
 });
 
@@ -316,7 +312,7 @@ liReportedAccounts.addEventListener("click", function () {
     console.log("report clicked");
     title.innerHTML = "Reported Accounts";
     $("#report_accounts").empty();
-     $("#dash").empty();
+    $("#dash").empty();
     $("#paid_users").empty();
     $("#unpaid").empty();
     $("#verified").empty();
@@ -327,4 +323,20 @@ liReportedAccounts.addEventListener("click", function () {
                 reportedAccount.user_name))
     );
 
+});
+
+
+
+document.getElementById("btn_open").addEventListener("click", function () {
+    console.log("BTN _OPEN");
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+
+});
+
+
+document.getElementById("btn_close").addEventListener("click", function () {
+    console.log("BTN _CLOSE");
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
 });
