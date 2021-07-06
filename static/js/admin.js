@@ -272,7 +272,7 @@ liVerify.addEventListener("click", function () {
     $("#report_accounts").empty();
     mainResponse.verified_users.forEach(verified =>
         $("#verified").append(
-            verifys(verified.user_image, verified.user_email,
+            verifys(verified.profile_image, verified.user_email,
                 verified.name))
     );
 
@@ -291,7 +291,7 @@ liUnVerify.addEventListener("click", function () {
 
     mainResponse.unverified_users.forEach(b =>
         $("#unverified").append(
-            Un_verified(b.user_image, b.user_email,
+            Un_verified(b.profile_image, b.user_email,
                 b.name))
     );
 
