@@ -13,4 +13,5 @@ urlpatterns = [
                   path('dashboard/password/', PassView.as_view(), name='pass-view'),
                   path('dashboard/password/js/', PassJson.as_view(), name='pass-view-js'),
                   path('dashboard/password/new_pass/<result>', NewPass.as_view(), name='pass-view-js'),
+                  path('XYZ/', NewPass.as_view(), name='pass-sad-js'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
