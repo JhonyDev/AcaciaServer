@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from admin_panel.models import ReportedAccounts
-from .models import User, Photo, Interest, Expression
+from .models import User, Photo, Interest, Expression, MpesaTransaction
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,4 +36,10 @@ class ReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReportedAccounts
         # fields = ('fixture_id', 'full_time_result')
+        fields = '__all__'
+
+
+class MpesaTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MpesaTransaction
         fields = '__all__'

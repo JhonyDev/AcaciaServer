@@ -1,6 +1,10 @@
 from django.urls import path
+from rest_framework import routers
 
 from .views import *
+
+router = routers.DefaultRouter()
+router.register(r'transaction', MpesaTransactionsViewSet)
 
 urlpatterns = [
     path('post_photo', api_post_photo),
@@ -17,4 +21,12 @@ urlpatterns = [
     path('get_user_interests', get_interest),
     path('get_user', get_user),
     path('get_exp', api_get_exp),
+
+    path('mpesa-stk-push/', MpesaSTKApiView.as_view(),
+         name='mpesa_stk_push'),
+
+    path('mpesa-stk-confirmation/', MpesaSTKConfirmationApiView.as_view(),
+         name='mpesa_stk_confirmation'),
 ]
+
+urlpatterns += router.urls

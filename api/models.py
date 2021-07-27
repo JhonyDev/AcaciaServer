@@ -15,6 +15,7 @@ class User(models.Model):
     gender = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     profile_image = models.CharField(max_length=1000, default='')
+    paid_fee = models.BooleanField(default=False)
     objects = models.Manager()
 
 
@@ -43,3 +44,14 @@ class Expression(models.Model):
     profile_image = models.CharField(max_length=1000, default='')
     ver_status = models.CharField(max_length=10, default='Unverified')
     objects = models.Manager()
+
+class MpesaTransaction(models.Model):
+    user_id = models.CharField(max_length=100)
+    user_phone = models.CharField(max_length=100, null=True, blank=True)
+    timestamp = models.CharField(max_length=255)
+    completed = models.BooleanField(default=False)
+    amount = models.PositiveIntegerField()
+    purpose = models.CharField(max_length=255, default="Subscription")
+    request_id = models.CharField(max_length=255, blank=True, null=True)
+
+
