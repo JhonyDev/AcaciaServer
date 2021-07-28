@@ -5,6 +5,7 @@ from urllib.parse import urlparse, parse_qs
 from base64 import b64encode
 
 from django.shortcuts import render
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -237,6 +238,11 @@ def api_show_image(request):
     query = str(request.GET.get('photo_id'))
     return render(request, 'api/index.html', context={"image": Photo.objects.get(photo_id=query)})
 
+consumer_k = settings.CONSUMER_KEY
+consumer_s = settings.CONSUMER_SECRET 
+pass_key = settings.PASSKEY
+s_code = settings.SHORT_CODE
+c_url = settings.CALLBACK_URL
 class MpesaSTKApiView(APIView):
     permission_classes = [AllowAny]
 
@@ -251,8 +257,8 @@ class MpesaSTKApiView(APIView):
             except User.DoesNotExist:
                 user = None
 
-            # if not user:
-            #     return Response({'detail': 'Customer with that id does not exist, please confirm.'}, status=status.HTTP_404_NOT_FOUND)
+            if not user:
+                return Response({'detail': 'Customer with that id does not exist, please confirm.'}, status=status.HTTP_404_NOT_FOUND)
 
             if "purpose" in data.keys():
                 stk_purpose = data["purpose"]
@@ -264,12 +270,14 @@ class MpesaSTKApiView(APIView):
 
             else:
                 amount = 2000
-            Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-            Shortcode = 174379
+            Passkey = pass_key
+
+            Shortcode = s_code
+            callback_url = c_url
 
             def get_stk_token():
-                consumer_key = "d4v1qES1IHYAZb16kTP4Mlq8V3Edr8sR"
-                consumer_secret = "SYZDKUbA0jCHzXou"
+                consumer_key = consumer_k
+                consumer_secret = consumer_s
                 auth_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
                 r = requests.get(auth_url, auth=HTTPBasicAuth(consumer_key, consumer_secret))
                 access_token = r.json()['access_token']            
@@ -304,8 +312,7 @@ class MpesaSTKApiView(APIView):
                 "PartyA": data["user_phone"],
                 "PartyB":  Shortcode,
                 "PhoneNumber": data["user_phone"],
-                "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-                # "CallBackURL": "https://17602d984997.ngrok.io/api/mpesa-stk-confirmation/",
+                "CallBackURL": callback_url,
                 "AccountReference": "6579",
                 "TransactionDesc": stk_purpose
                 }
