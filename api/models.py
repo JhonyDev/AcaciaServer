@@ -45,6 +45,7 @@ class Expression(models.Model):
     ver_status = models.CharField(max_length=10, default='Unverified')
     objects = models.Manager()
 
+
 class MpesaTransaction(models.Model):
     user_id = models.CharField(max_length=100)
     user_phone = models.CharField(max_length=100, null=True, blank=True)
@@ -53,5 +54,4 @@ class MpesaTransaction(models.Model):
     amount = models.PositiveIntegerField()
     purpose = models.CharField(max_length=255, default="Subscription")
     request_id = models.CharField(max_length=255, blank=True, null=True)
-
-
+    objects = models.Manager()

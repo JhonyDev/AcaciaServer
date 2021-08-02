@@ -18,7 +18,8 @@ from rest_framework import filters as filterz
 
 from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression, MpesaTransaction
-from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer, ReportSerializer, MpesaTransactionSerializer
+from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer, ReportSerializer, \
+    MpesaTransactionSerializer
 
 
 @api_view(['POST', ])
@@ -238,17 +239,19 @@ def api_show_image(request):
     query = str(request.GET.get('photo_id'))
     return render(request, 'api/index.html', context={"image": Photo.objects.get(photo_id=query)})
 
+
 consumer_k = settings.CONSUMER_KEY
-consumer_s = settings.CONSUMER_SECRET 
+consumer_s = settings.CONSUMER_SECRET
 pass_key = settings.PASSKEY
 s_code = settings.SHORT_CODE
 c_url = settings.CALLBACK_URL
+
+
 class MpesaSTKApiView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, **kwargs):
         data = request.data
-
 
         if "user_id" and "user_phone" in data.keys():
             try:
@@ -258,7 +261,8 @@ class MpesaSTKApiView(APIView):
                 user = None
 
             if not user:
-                return Response({'detail': 'Customer with that id does not exist, please confirm.'}, status=status.HTTP_404_NOT_FOUND)
+                return Response({'detail': 'Customer with that id does not exist, please confirm.'},
+                                status=status.HTTP_404_NOT_FOUND)
 
             if "purpose" in data.keys():
                 stk_purpose = data["purpose"]
@@ -280,7 +284,7 @@ class MpesaSTKApiView(APIView):
                 consumer_secret = consumer_s
                 auth_url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
                 r = requests.get(auth_url, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-                access_token = r.json()['access_token']            
+                access_token = r.json()['access_token']
                 return access_token
 
             access_token = get_stk_token()
@@ -288,20 +292,20 @@ class MpesaSTKApiView(APIView):
             def get_time():
                 now = str(datetime.now().strftime("%Y%m%d"))
                 time = str(datetime.now().strftime("%H%M%S"))
-                real = str(now+time)
+                real = str(now + time)
                 return real
 
             time_now = get_time()
 
             def encoded_pass():
-                pwd = (str(Shortcode)+Passkey+time_now).encode('utf-8')
+                pwd = (str(Shortcode) + Passkey + time_now).encode('utf-8')
                 pwd_enc = b64encode(pwd).decode('ascii')
                 return pwd_enc
 
             pass_enc = encoded_pass()
-    
+
             api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
-            headers = { "Authorization": "Bearer %s" % access_token }
+            headers = {"Authorization": "Bearer %s" % access_token}
 
             request = {
                 "BusinessShortCode": Shortcode,
@@ -310,29 +314,30 @@ class MpesaSTKApiView(APIView):
                 "TransactionType": "CustomerBuyGoodsOnline",
                 "Amount": amount,
                 "PartyA": data["user_phone"],
-                "PartyB":  Shortcode,
+                "PartyB": Shortcode,
                 "PhoneNumber": data["user_phone"],
                 "CallBackURL": callback_url,
                 "AccountReference": "6579",
                 "TransactionDesc": stk_purpose
-                }
+            }
 
-            response = requests.post(api_url, json = request, headers=headers)
+            response = requests.post(api_url, json=request, headers=headers)
             if response.status_code == 200:
                 MpesaTransaction.objects.create(
-                    user_id = data["user_id"],
-                    user_phone = data["user_phone"],
-                    purpose = stk_purpose,
-                    amount = amount,
-                    timestamp = time_now,
-                    request_id = response.json()["MerchantRequestID"],
+                    user_id=data["user_id"],
+                    user_phone=data["user_phone"],
+                    purpose=stk_purpose,
+                    amount=amount,
+                    timestamp=time_now,
+                    request_id=response.json()["MerchantRequestID"],
 
                 )
 
             return Response({"detail": "Stk push Succesfull"}, status=status.HTTP_200_OK)
-                        
+
         else:
-            return Response({"detail": "You need to pass the user phone number to make the stk push."}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({"detail": "You need to pass the user phone number to make the stk push."},
+                            status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
 class MpesaSTKConfirmationApiView(APIView):
@@ -363,5 +368,3 @@ class MpesaTransactionsViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (filters.DjangoFilterBackend, filterz.SearchFilter)
     filterset_fields = ('user_id', 'user_phone', 'completed', 'purpose')
     search_fields = ['user_id', 'user_phone', 'purpose']
-
-
