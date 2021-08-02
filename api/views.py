@@ -304,24 +304,25 @@ class MpesaSTKApiView(APIView):
 
             pass_enc = encoded_pass()
 
-            api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+            api_url = "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
             headers = {"Authorization": "Bearer %s" % access_token}
 
             request = {
                 "BusinessShortCode": Shortcode,
                 "Password": pass_enc,
                 "Timestamp": time_now,
-                "TransactionType": "CustomerBuyGoodsOnline",
+                "TransactionType": "CustomerPayBillOnline",
                 "Amount": amount,
                 "PartyA": data["user_phone"],
                 "PartyB": Shortcode,
                 "PhoneNumber": data["user_phone"],
                 "CallBackURL": callback_url,
-                "AccountReference": "6579",
+                "AccountReference": "4075259",
                 "TransactionDesc": stk_purpose
             }
 
             response = requests.post(api_url, json=request, headers=headers)
+            print(response.json())
             if response.status_code == 200:
                 MpesaTransaction.objects.create(
                     user_id=data["user_id"],
