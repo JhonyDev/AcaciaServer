@@ -278,7 +278,7 @@ class MpesaSTKApiView(APIView):
             def get_stk_token():
                 consumer_key = consumer_k
                 consumer_secret = consumer_s
-                auth_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+                auth_url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
                 r = requests.get(auth_url, auth=HTTPBasicAuth(consumer_key, consumer_secret))
                 access_token = r.json()['access_token']            
                 return access_token
