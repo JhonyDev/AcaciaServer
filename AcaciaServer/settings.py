@@ -65,6 +65,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'AcaciaServer.wsgi.application'
 
 DATABASES = {
