@@ -23,7 +23,6 @@ def run_cron():
         if not paid_user:
             continue
 
-
         new_paid_user = UnPaidUsers()
         new_paid_user.user_email = paid_user.user_email
         new_paid_user.user_name = paid_user.name
