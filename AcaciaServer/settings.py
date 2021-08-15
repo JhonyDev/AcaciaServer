@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django_cron',
+    'django_crontab',
     'django_filters',
     'rest_framework',
 
@@ -64,7 +65,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'AcaciaServer.wsgi.application'
 
@@ -139,3 +139,7 @@ CONSUMER_SECRET = env('CONSUMER_SECRET')
 PASSKEY = env('PASSKEY')
 SHORT_CODE = env('SHORT_CODE')
 CALLBACK_URL = env('CALLBACK_URL')
+
+CRONJOBS = [
+    ('*/5 * * * *', 'api.cron.run_cron')
+]
