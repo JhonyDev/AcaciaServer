@@ -40,15 +40,17 @@ def run_cron():
     list_paid_user = User.objects.all()
 
     for paid_user in list_paid_user:
-        list_paid_user = PaidUsers.objects.filter(name=paid_user.name, user_email=paid_user.user_email)
+        new_list_paid_user = PaidUsers.objects.filter(name=paid_user.name, user_email=paid_user.user_email)
 
-        if not list_paid_user:
+        print("Check if user exists in paid")
+
+        if not new_list_paid_user:
             continue
+
+        print("Adding to paid users")
 
         paid_user.paid_fee = True
         paid_user.save()
-
-
 
     print("Cron Ended")
 
