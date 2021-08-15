@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework import routers
 
 from .views import *
+from .cron import run_cron
 
 router = routers.DefaultRouter()
 router.register(r'transaction', MpesaTransactionsViewSet)
@@ -21,6 +22,8 @@ urlpatterns = [
     path('get_user_interests', get_interest),
     path('get_user', get_user),
     path('get_exp', api_get_exp),
+
+    path('run_cron', run_cron()),
 
     path('mpesa-stk-push/', MpesaSTKApiView.as_view(),
          name='mpesa_stk_push'),

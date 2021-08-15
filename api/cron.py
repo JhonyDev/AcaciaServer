@@ -3,6 +3,7 @@ from admin_panel.models import PaidUsers, UnPaidUsers
 
 
 def run_cron():
+    print('Cron running')
     paid_users = User.objects.filter(paid_fee=True)
     for paid_user in paid_users:
         paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
@@ -39,3 +40,5 @@ def run_cron():
 
         paid_user.paid_fee = True
         paid_user.save()
+
+    print("Cron Ended")

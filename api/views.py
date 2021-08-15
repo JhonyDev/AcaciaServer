@@ -36,7 +36,6 @@ def api_post_user(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['POST', ])
 def api_post_report(request):
     query = str(request.GET.get('user_email'))
