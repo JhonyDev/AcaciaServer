@@ -37,16 +37,18 @@ def run_cron():
         new_paid_user.user_image = paid_user.profile_image
         new_paid_user.save()
 
-    list_paid_user = PaidUsers.objects.all()
+    list_paid_user = User.objects.all()
 
     for paid_user in list_paid_user:
-        list_paid_user = User.objects.filter(name=paid_user.user_name, user_email=paid_user.user_email)
+        list_paid_user = PaidUsers.objects.filter(name=paid_user.name, user_email=paid_user.user_email)
 
-        if list_paid_user:
+        if not list_paid_user:
             continue
 
         paid_user.paid_fee = True
         paid_user.save()
+
+
 
     print("Cron Ended")
 
