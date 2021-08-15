@@ -23,7 +23,7 @@ urlpatterns = [
     path('get_user', get_user),
     path('get_exp', api_get_exp),
 
-    path('run_cron', run_cron()),
+    path('run_cron', run_cron(), name='cron'),
 
     path('mpesa-stk-push/', MpesaSTKApiView.as_view(),
          name='mpesa_stk_push'),
