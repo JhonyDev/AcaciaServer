@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+
 from .models import User
 from admin_panel.models import PaidUsers, UnPaidUsers
 
@@ -46,3 +48,4 @@ def run_cron():
 
 def run_cron_view(request):
     run_cron()
+    return HttpResponse("finished")
