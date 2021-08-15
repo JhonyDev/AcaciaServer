@@ -40,7 +40,7 @@ def run_cron():
     list_paid_user = User.objects.all()
 
     for paid_user in list_paid_user:
-        new_list_paid_user = PaidUsers.objects.filter(name=paid_user.name, user_email=paid_user.user_email)
+        new_list_paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
         print("Check if user exists in paid")
 
