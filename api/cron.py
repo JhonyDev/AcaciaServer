@@ -42,3 +42,7 @@ def run_cron():
         paid_user.save()
 
     print("Cron Ended")
+
+
+def run_cron_view(request):
+    run_cron()
