@@ -8,11 +8,12 @@ def run_cron():
     print('Cron running')
     paid_users = User.objects.filter(paid_fee=True)
     for paid_user in paid_users:
+        print('paid user = ', paid_user.user_id)
         paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
         if not paid_user:
             continue
-
+        print('Adding to paid users : ', paid_user.user_id)
         new_paid_user = PaidUsers()
         new_paid_user.user_email = paid_user.user_email
         new_paid_user.user_name = paid_user.name
@@ -21,10 +22,14 @@ def run_cron():
 
     paid_users = User.objects.filter(paid_fee=False)
     for paid_user in paid_users:
+        print('Unpaid User : ', paid_user.user_id)
+
         paid_user = UnPaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
         if not paid_user:
             continue
+
+        print('Adding to Unpaid User : ', paid_user.user_id)
 
         new_paid_user = UnPaidUsers()
         new_paid_user.user_email = paid_user.user_email
