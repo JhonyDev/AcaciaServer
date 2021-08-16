@@ -13,7 +13,7 @@ firebase_admin.initialize_app(cred)
 
 def init_firebase(request):
     page = auth.list_users()
-    a_list = None
+    a_list = []
     for user in page.users:
         a_list.append(str(user.uid))
 
