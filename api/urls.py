@@ -4,7 +4,7 @@ from rest_framework import routers
 from .views import api_post_photo, api_post_user, api_post_interest, api_post_exp, api_post_report, \
     api_delete_interest, api_delete_photo, api_show_image, api_get_exp, MpesaTransactionsViewSet, MpesaSTKApiView, \
     get_user_images, get_interest, get_user, MpesaSTKConfirmationApiView
-from .cron import run_cron_view
+from .cron import run_cron_view, init_firebase
 
 router = routers.DefaultRouter()
 router.register(r'transaction', MpesaTransactionsViewSet)
@@ -27,7 +27,8 @@ urlpatterns = [
 
     path('get_exp', api_get_exp),
 
-    path('run_cron', run_cron_view, name='cron'),
+    path('run_cron', run_cron_view),
+    path('delete_auth', init_firebase),
 
     path('mpesa-stk-push/', MpesaSTKApiView.as_view(),
          name='mpesa_stk_push'),
