@@ -74,7 +74,6 @@ def run_cron():
             print('Already paid enabled')
             continue
 
-        print()
         print("Adding to paid users = ", paid_user.name)
 
         paid_user.paid_fee = True
