@@ -28,15 +28,12 @@ def init_firebase(request):
 
 
 def run_cron():
-    print('Cron running')
     paid_users = User.objects.filter(paid_fee=True)
     for paid_user in paid_users:
-        print('paid user = ', paid_user.user_id)
         list_paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
         if list_paid_user:
             continue
-        print('Adding to paid users : ', paid_user.user_id)
         new_paid_user = PaidUsers()
         new_paid_user.user_email = paid_user.user_email
         new_paid_user.user_name = paid_user.name
@@ -45,14 +42,10 @@ def run_cron():
 
     paid_users = User.objects.filter(paid_fee=False)
     for paid_user in paid_users:
-        print('Unpaid User : ', paid_user.user_id)
-
         list_paid_user = UnPaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
         if list_paid_user:
             continue
-
-        print('Adding to Unpaid User : ', paid_user.user_id)
 
         new_paid_user = UnPaidUsers()
         new_paid_user.user_email = paid_user.user_email
@@ -65,16 +58,11 @@ def run_cron():
     for paid_user in list_paid_user:
         new_list_paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
 
-        print("Check if user exists in paid")
-
         if not new_list_paid_user:
             continue
 
         if paid_user.paid_fee:
-            print('Already paid enabled')
             continue
-
-        print("Adding to paid users = ", paid_user.name)
 
         paid_user.paid_fee = True
         paid_user.save()
@@ -83,10 +71,7 @@ def run_cron():
     for paid in list_paid_user:
         list_un_paid = UnPaidUsers.objects.filter(user_name=paid.user_name, user_email=paid.user_email)
         for unpaid in list_un_paid:
-            print('Deleting from unpaid : ' + unpaid.user_name)
             unpaid.delete()
-
-    print("Cron Ended")
 
 
 def run_cron_view(request):
