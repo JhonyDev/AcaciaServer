@@ -20,6 +20,10 @@ def run_cron():
         new_paid_user.user_image = paid_user.profile_image
         new_paid_user.save()
 
+        list_un_paid_user = UnPaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
+        for un_paid_user in list_un_paid_user:
+            un_paid_user.delete()
+
     paid_users = User.objects.filter(paid_fee=False)
     for paid_user in paid_users:
         print('Unpaid User : ', paid_user.user_id)
