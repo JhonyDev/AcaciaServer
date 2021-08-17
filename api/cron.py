@@ -28,50 +28,40 @@ def init_firebase(request):
 
 
 def run_cron():
-    paid_users = User.objects.filter(paid_fee=True)
-    for paid_user in paid_users:
-        list_paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
+    users = User.objects.all()
+    for user in users:
 
-        if list_paid_user:
-            continue
-        new_paid_user = PaidUsers()
-        new_paid_user.user_email = paid_user.user_email
-        new_paid_user.user_name = paid_user.name
-        new_paid_user.user_image = paid_user.profile_image
-        new_paid_user.save()
-
-    paid_users = User.objects.filter(paid_fee=False)
-    for paid_user in paid_users:
-        list_paid_user = UnPaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
-
-        if list_paid_user:
-            continue
-
-        new_paid_user = UnPaidUsers()
-        new_paid_user.user_email = paid_user.user_email
-        new_paid_user.user_name = paid_user.name
-        new_paid_user.user_image = paid_user.profile_image
-        new_paid_user.save()
+        if user.paid_fee:
+            list_paid_user = PaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
+            if list_paid_user:
+                continue
+            new_paid_user = PaidUsers()
+            new_paid_user.user_email = user.user_email
+            new_paid_user.user_name = user.name
+            new_paid_user.user_image = user.profile_image
+            new_paid_user.save()
+        else:
+            list_un_paid_user = UnPaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
+            if list_un_paid_user:
+                continue
+            new_un_paid_user = UnPaidUsers()
+            new_un_paid_user.user_email = user.user_email
+            new_un_paid_user.user_name = user.name
+            new_un_paid_user.user_image = user.profile_image
+            new_un_paid_user.save()
 
     list_paid_user = User.objects.all()
-
-    for paid_user in list_paid_user:
-        new_list_paid_user = PaidUsers.objects.filter(user_name=paid_user.name, user_email=paid_user.user_email)
+    for user in list_paid_user:
+        new_list_paid_user = PaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
 
         if not new_list_paid_user:
             continue
 
-        if paid_user.paid_fee:
+        if user.paid_fee:
             continue
 
-        paid_user.paid_fee = True
-        paid_user.save()
-
-    list_paid_user = PaidUsers.objects.all()
-    for paid in list_paid_user:
-        list_un_paid = UnPaidUsers.objects.filter(user_name=paid.user_name, user_email=paid.user_email)
-        for unpaid in list_un_paid:
-            unpaid.delete()
+        user.paid_fee = True
+        user.save()
 
 
 def run_cron_view(request):
