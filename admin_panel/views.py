@@ -1,3 +1,4 @@
+import json
 import threading
 import time
 
@@ -76,13 +77,13 @@ class AdminJson(View):
                 paid_user.user_image = user.get('profile_image')
                 paid_user.user_email = user.get('user_email')
                 paid_user.user_name = user.get('name')
-                paid_users.append(paid_user)
+                paid_users.append(paid_user.__dict__)
             else:
                 unpaid = UnPaidUsers()
                 unpaid.user_image = user.get('profile_image')
                 unpaid.user_email = user.get('user_email')
                 unpaid.user_name = user.get('name')
-                unpaid_users.append(unpaid)
+                unpaid_users.append(unpaid.__dict__)
 
         print('included')
 
