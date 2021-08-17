@@ -71,7 +71,7 @@ class AdminJson(View):
         print('including paid and unpaid')
 
         for user in users:
-            if user.get('paid_fee'):
+            if str(user.get('paid_fee')) == 'True':
                 paid_user = PaidUsers()
                 paid_user.user_image = user.profile_image
                 paid_user.user_email = user.user_email
