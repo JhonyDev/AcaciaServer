@@ -62,9 +62,24 @@ class AdminJson(View):
             creds = admin_cred
 
         reported_accounts = list(ReportedAccounts.objects.values())
-        paid_users = list(PaidUsers.objects.values())
-        unpaid_users = list(UnPaidUsers.objects.values())
+
         users = list(User.objects.values())
+
+        paid_users = []
+        unpaid_users = []
+        for user in users:
+            if user.paid_fee:
+                paid_user = PaidUsers()
+                paid_user.user_image = user.profile_image
+                paid_user.user_email = user.user_email
+                paid_user.user_name = user.name
+                paid_users.append(paid_users)
+            else:
+                unpaid = UnPaidUsers()
+                unpaid.user_image = user.profile_image
+                unpaid.user_email = user.user_email
+                unpaid.user_name = user.name
+                unpaid_users.append(unpaid)
 
         verified_users = []
         unverified_users = []
@@ -87,7 +102,7 @@ class AdminJson(View):
              'unpaid_users': unpaid_users,
              'verified_users': verified_users,
              'unverified_users': unverified_users,
-             'total_users': len(users)}
+             'total_users': len(users), }
             , safe=False)
 
 

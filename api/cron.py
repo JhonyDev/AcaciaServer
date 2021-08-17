@@ -27,43 +27,6 @@ def init_firebase(request):
     return HttpResponse("finished")
 
 
-def run_cron():
-    users = User.objects.all()
-    for user in users:
-
-        if user.paid_fee:
-            list_paid_user = PaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
-            if list_paid_user:
-                continue
-            new_paid_user = PaidUsers()
-            new_paid_user.user_email = user.user_email
-            new_paid_user.user_name = user.name
-            new_paid_user.user_image = user.profile_image
-            new_paid_user.save()
-        else:
-            list_un_paid_user = UnPaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
-            if list_un_paid_user:
-                continue
-            new_un_paid_user = UnPaidUsers()
-            new_un_paid_user.user_email = user.user_email
-            new_un_paid_user.user_name = user.name
-            new_un_paid_user.user_image = user.profile_image
-            new_un_paid_user.save()
-
-    list_paid_user = User.objects.all()
-    for user in list_paid_user:
-        new_list_paid_user = PaidUsers.objects.filter(user_name=user.name, user_email=user.user_email)
-
-        if not new_list_paid_user:
-            continue
-
-        if user.paid_fee:
-            continue
-
-        user.paid_fee = True
-        user.save()
-
-
 def run_cron_view(request):
-    run_cron()
+    # run_cron()
     return HttpResponse("finished")

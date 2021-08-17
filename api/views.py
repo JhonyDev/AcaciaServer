@@ -20,7 +20,6 @@ from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression, MpesaTransaction
 from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, InterestSerializer, ReportSerializer, \
     MpesaTransactionSerializer
-from .cron import run_cron
 
 
 @api_view(['POST', ])
@@ -184,7 +183,6 @@ def get_user_images(request):
 
 @api_view(['GET', ])
 def get_user(request):
-    run_cron()
     query = str(request.GET.get('user_id'))
     if query == '*':
         user = User.objects.all()
