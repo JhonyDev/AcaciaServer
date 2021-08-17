@@ -73,7 +73,7 @@ class AdminJson(View):
                 paid_user.user_image = user.profile_image
                 paid_user.user_email = user.user_email
                 paid_user.user_name = user.name
-                paid_users.append(paid_users)
+                paid_users.append(paid_user)
             else:
                 unpaid = UnPaidUsers()
                 unpaid.user_image = user.profile_image
