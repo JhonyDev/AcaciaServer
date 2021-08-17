@@ -67,6 +67,9 @@ class AdminJson(View):
 
         paid_users = []
         unpaid_users = []
+
+        print('including paid and unpaid')
+
         for user in users:
             if user.paid_fee:
                 paid_user = PaidUsers()
@@ -80,6 +83,8 @@ class AdminJson(View):
                 unpaid.user_email = user.user_email
                 unpaid.user_name = user.name
                 unpaid_users.append(unpaid)
+
+        print('included')
 
         verified_users = []
         unverified_users = []
