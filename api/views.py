@@ -271,9 +271,8 @@ class MpesaSTKApiView(APIView):
 
             if "amount" in data.keys():
                 amount = data["amount"]
-
             else:
-                amount = 2000
+                amount = 1
             Passkey = pass_key
 
             Shortcode = s_code
