@@ -193,6 +193,14 @@ def get_user(request):
 
 
 @api_view(['GET', ])
+def get_id(request):
+    query = str(request.GET.get('user_email'))
+    user = User.objects.filter(user_email=query)
+    serializer = UserSerializer(user, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', ])
 def get_interest(request):
     query = str(request.GET.get('user_id'))
     interest = Interest.objects.filter(user_id=query)

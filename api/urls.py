@@ -3,7 +3,7 @@ from rest_framework import routers
 
 from .views import api_post_photo, api_post_user, api_post_interest, api_post_exp, api_post_report, \
     api_delete_interest, api_delete_photo, api_show_image, api_get_exp, MpesaTransactionsViewSet, MpesaSTKApiView, \
-    get_user_images, get_interest, get_user, MpesaSTKConfirmationApiView
+    get_user_images, get_interest, get_user,get_id, MpesaSTKConfirmationApiView
 from .cron import run_cron_view, init_firebase
 
 router = routers.DefaultRouter()
@@ -24,6 +24,7 @@ urlpatterns = [
     path('get_user_interests', get_interest),
 
     path('get_user', get_user),
+    path('get_id', get_id),
 
     path('get_exp', api_get_exp),
 
