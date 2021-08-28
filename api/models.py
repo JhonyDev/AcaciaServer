@@ -17,6 +17,9 @@ class User(models.Model):
     profile_image = models.CharField(max_length=1000, default='')
     paid_fee = models.BooleanField(default=False)
     objects = models.Manager()
+    
+    def __str__(self):
+        return f"{self.user_id} - {self.user_email}"
 
 
 class Photo(models.Model):
