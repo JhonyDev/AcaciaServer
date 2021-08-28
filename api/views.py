@@ -209,6 +209,7 @@ def get_id(request):
     return response
 
 
+
 @api_view(['GET', ])
 def get_interest(request):
     query = str(request.GET.get('user_id'))
