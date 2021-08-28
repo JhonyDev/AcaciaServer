@@ -195,9 +195,18 @@ def get_user(request):
 @api_view(['GET', ])
 def get_id(request):
     query = str(request.GET.get('user_email'))
-    user = User.objects.filter(user_email=query)
-    serializer = UserSerializer(user, many=True)
-    return Response(serializer.data)
+    users = User.objects.filter(user_email=query)
+
+    if users:
+        for user in users:
+            user.paid_fee = True
+        response = Response({'detail': 'Given Access'},
+                            status=status.HTTP_200_OK)
+    else:
+        response = Response({'detail': 'Email not Not Found'},
+                            status=status.HTTP_404_NOT_FOUND)
+
+    return response
 
 
 @api_view(['GET', ])
