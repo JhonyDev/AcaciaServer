@@ -198,9 +198,12 @@ def get_id(request):
     users = User.objects.filter(user_email=query)
 
     if users:
+        list_users = []
         for user in users:
             user.paid_fee = True
-        response = Response({'detail': 'Given Access'},
+            user.save()
+            list_users.append(user)
+        response = Response({'detail': 'Given Access', 'users': list_users},
                             status=status.HTTP_200_OK)
     else:
         response = Response({'detail': 'Email not Not Found'},
