@@ -188,6 +188,12 @@ def get_user(request):
         user = User.objects.all()
     else:
         user = User.objects.filter(user_id=query)
+        transaction_list = MpesaTransaction.objects.filter(user_id=query)
+        for transaction in transaction_list:
+            if transaction.completed:
+                user.paid_fee = True
+                break
+
     serializer = UserSerializer(user, many=True)
     return Response(serializer.data)
 
