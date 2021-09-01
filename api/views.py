@@ -183,6 +183,15 @@ def get_user_images(request):
 
 @api_view(['GET', ])
 def get_user(request):
+    users = User.objects.all()
+    for target_user in users:
+        transaction_list = MpesaTransaction.objects.filter(user_id=target_user.user_id)
+        for transaction in transaction_list:
+            if transaction.completed:
+                target_user.paid_fee = True
+                target_user.save()
+                break
+
     query = str(request.GET.get('user_id'))
     if query == '*':
         user = User.objects.all()
