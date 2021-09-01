@@ -192,7 +192,6 @@ def get_user(request):
         for transaction in transaction_list:
             if transaction.completed:
                 user.paid_fee = True
-                user.save()
                 break
 
     serializer = UserSerializer(user, many=True)
