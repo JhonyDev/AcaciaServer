@@ -210,6 +210,14 @@ def get_id(request):
         response = Response({'detail': 'Given Access'},
                             status=status.HTTP_200_OK)
     else:
+
+        users = User.objects.all()
+        for user in users:
+            transaction_list = MpesaTransaction.objects.filter(user_id=user.user_id)
+            for transaction in transaction_list:
+                if transaction.completed:
+                    user.paid_fee = True
+                    break
         response = Response({'detail': 'Email not Not Found'},
                             status=status.HTTP_404_NOT_FOUND)
 
