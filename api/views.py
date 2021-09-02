@@ -163,8 +163,10 @@ def api_delete_photo(request):
 
     user_id = query.get('user_id')[0]
     picture = query.get('picture')[0]
-
-    # picture.replace('https://mateappkenya.com/mediafiles/', '')
+    print(picture)
+    picture.replace('https://mateappkenya.com/mediafiles/', '')
+    print('replaced')
+    print(picture)
     test_photos = Photo.objects.filter(user_id=user_id)
     for photo in test_photos:
         print(photo.picture)
