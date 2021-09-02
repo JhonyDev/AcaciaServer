@@ -154,7 +154,7 @@ def api_delete_interest(request):
     return Response(status=status.HTTP_202_ACCEPTED)
 
 
-@api_view(['POST', ])
+@api_view(['DELETE', ])
 def api_delete_photo(request):
     request.build_absolute_uri()
     url = request.get_full_path()
@@ -166,6 +166,7 @@ def api_delete_photo(request):
 
     test_photos = Photo.objects.filter(user_id=user_id)
     for photo in test_photos:
+        print(photo)
         if picture in photo.picture:
             photo.delete()
             break
