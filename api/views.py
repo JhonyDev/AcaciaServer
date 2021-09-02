@@ -164,22 +164,19 @@ def api_delete_photo(request):
     user_id = query.get('user_id')[0]
     picture = query.get('picture')[0]
 
-    print(user_id)
-    print(picture)
-
-    picture = picture.replace('-', '/')
-
-    print('after replacing')
-    print(picture)
     test_photos = Photo.objects.filter(user_id=user_id)
     for photo in test_photos:
-        print(photo.picture)
+        if picture in photo.picture:
+            photo.delete()
+            break
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-    photos = Photo.objects.filter(user_id=user_id, picture=picture)
-    for photo in photos:
-        photo.delete()
+    # photos = Photo.objects.filter(user_id=user_id, picture=picture)
+    # for photo in photos:
+    #     photo.delete()
 
-    if not photos:
+    if not test_photos:
         return Response(status=status.HTTP_404_NOT_FOUND)
     return Response(status=status.HTTP_202_ACCEPTED)
 
