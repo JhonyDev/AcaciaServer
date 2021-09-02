@@ -177,6 +177,7 @@ def api_delete_photo(request):
     # for photo in photos:
     #     photo.delete()
 
+
     if not test_photos:
         return Response(status=status.HTTP_404_NOT_FOUND)
     return Response(status=status.HTTP_202_ACCEPTED)
