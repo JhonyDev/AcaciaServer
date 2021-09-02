@@ -164,12 +164,13 @@ def api_delete_photo(request):
     user_id = query.get('user_id')[0]
     picture = query.get('picture')[0]
 
-    picture.replace('http://192.168.1.107:8000', '')
+    picture.replace('https://mateappkenya.com', '')
 
     photos = Photo.objects.filter(user_id=user_id, picture=picture)
     for photo in photos:
         photo.delete()
-
+    if not photos:
+        return Response(status=status.HTTP_404_NOT_FOUND)
     return Response(status=status.HTTP_202_ACCEPTED)
 
 
