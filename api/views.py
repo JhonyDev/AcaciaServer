@@ -154,7 +154,7 @@ def api_delete_interest(request):
     return Response(status=status.HTTP_202_ACCEPTED)
 
 
-@api_view(['DELETE', ])
+@api_view(['POST', ])
 def api_delete_photo(request):
     request.build_absolute_uri()
     url = request.get_full_path()
@@ -167,9 +167,7 @@ def api_delete_photo(request):
     print(user_id)
     print(picture)
 
-    picture = picture.replace('%3A', ':')
-    picture = picture.replace('%2F', '/')
-    picture = picture.replace('https://mateappkenya.com/mediafiles/', '')
+    picture = picture.replace('-', '/')
 
     print('after replacing')
     print(picture)
