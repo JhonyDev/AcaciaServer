@@ -167,8 +167,10 @@ def api_delete_photo(request):
     test_photos = Photo.objects.filter(user_id=user_id)
     for photo in test_photos:
         print(photo.picture)
+        print(type(photo.picture))
         print(picture)
-        if picture in photo.picture:
+
+        if picture in str(photo.picture):
             photo.delete()
             break
     else:
