@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
 from rest_framework import filters as filterz
+from virtualenv.config.convert import NoneType
 
 from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression, MpesaTransaction
@@ -212,7 +213,11 @@ def get_user(request):
                 break
 
     user_id = parsed_query.get('user_id')[0]
-    gender = parsed_query.get('gender')[0]
+
+    try:
+        gender = parsed_query.get('gender')[0]
+    except:
+        gender = None
 
     if user_id == '*':
         if gender == 'Both' or gender == '*' or not gender:
