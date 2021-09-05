@@ -197,6 +197,11 @@ def get_user_images(request):
 
 @api_view(['GET', ])
 def get_user(request):
+    request.build_absolute_uri()
+    url = request.get_full_path()
+    parsed_url = urlparse(url)
+    parsed_query = parse_qs(parsed_url.query)
+
     users = User.objects.all()
     for target_user in users:
         transaction_list = MpesaTransaction.objects.filter(user_id=target_user.user_id)
@@ -206,14 +211,18 @@ def get_user(request):
                 target_user.save()
                 break
 
-    query = str(request.GET.get('user_id'))
-    if query == '*':
+    user_id = parsed_query.get('user_id')[0]
+    gender = parsed_query.get('gender')[0]
 
-        user = User.objects.filter(paid_fee=True).order_by('?')[:20]
+    if user_id == '*':
+        if gender == 'Both' or gender == '*' or not gender:
+            user = User.objects.filter(paid_fee=True).order_by('?')[:15]
+        else:
+            user = User.objects.filter(paid_fee=True, gender=gender).order_by('?')[:15]
         # user = random.sample(list_user, 20)
     else:
-        user = User.objects.filter(user_id=query)
-        transaction_list = MpesaTransaction.objects.filter(user_id=query)
+        user = User.objects.filter(user_id=user_id)
+        transaction_list = MpesaTransaction.objects.filter(user_id=user_id)
         for transaction in transaction_list:
             if transaction.completed:
                 user.paid_fee = True
