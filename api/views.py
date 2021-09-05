@@ -1,3 +1,5 @@
+from random import random
+
 import requests
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
@@ -206,7 +208,8 @@ def get_user(request):
 
     query = str(request.GET.get('user_id'))
     if query == '*':
-        user = User.objects.filter(paid_fee=True)
+        list_user = User.objects.filter(paid_fee=True)
+        user = random.sample(list_user, 20)
     else:
         user = User.objects.filter(user_id=query)
         transaction_list = MpesaTransaction.objects.filter(user_id=query)
