@@ -208,7 +208,8 @@ def get_user(request):
 
     query = str(request.GET.get('user_id'))
     if query == '*':
-        user = User.objects.filter(paid_fee=True)
+
+        user = User.objects.filter(paid_fee=True).order_by('?')[:20]
         # user = random.sample(list_user, 20)
     else:
         user = User.objects.filter(user_id=query)
