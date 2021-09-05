@@ -17,7 +17,6 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
 from rest_framework import filters as filterz
-from virtualenv.config.convert import NoneType
 
 from admin_panel.models import ReportedAccounts
 from .models import User, Photo, Interest, Expression, MpesaTransaction
