@@ -206,7 +206,7 @@ def get_user(request):
 
     query = str(request.GET.get('user_id'))
     if query == '*':
-        user = User.objects.all()
+        user = User.objects.filter(paid_fee=True)
     else:
         user = User.objects.filter(user_id=query)
         transaction_list = MpesaTransaction.objects.filter(user_id=query)
