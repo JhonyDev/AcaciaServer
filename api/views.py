@@ -28,12 +28,14 @@ from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, Inter
 def api_post_user(request):
     query = str(request.GET.get('user_id'))
     user = User()
-    users = User.objects.filter(user_id=query)
-    if users:
-        for user in users:
-            user.delete()
+
     serializer = UserSerializer(user, data=request.data)
     if serializer.is_valid():
+        users = User.objects.filter(user_id=query)
+        if users:
+            for user in users:
+                user.delete()
+
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
