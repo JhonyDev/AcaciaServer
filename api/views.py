@@ -27,20 +27,18 @@ from .serializers import UserSerializer, PhotoSerializer, LikedSerializer, Inter
 @api_view(['POST', ])
 def api_post_user(request):
     query = str(request.GET.get('user_id'))
-    user = User()
     users = User.objects.filter(user_id=query)
+    deleted_user = User()
+    for user in users:
+        deleted_user = user
+        user.delete()
 
-    prev_user = None
-    if users:
-        for user in users:
-            prev_user = user
-            user.delete()
-
-    serializer = UserSerializer(user, data=request.data)
+    new_user = User()
+    serializer = UserSerializer(new_user, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    prev_user.save()
+    deleted_user.save()
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
