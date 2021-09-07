@@ -44,8 +44,8 @@ def api_post_user(request):
         user.address = data.get('address')
         user.profile_image = data.get('profile_image')
         user.paid_fee = data.get('paid_fee')
-
-        serializer = UserSerializer(User(), data=user)
+        user.save()
+        serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     new_user = User()
