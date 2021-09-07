@@ -29,6 +29,7 @@ def api_post_user(request):
     query = str(request.GET.get('user_id'))
     user = User()
     users = User.objects.filter(user_id=query)
+
     prev_user = None
     if users:
         for user in users:
@@ -39,10 +40,7 @@ def api_post_user(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    if prev_user is not None:
-        prev_user.save()
-
+    prev_user.save()
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
