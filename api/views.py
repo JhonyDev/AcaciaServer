@@ -230,6 +230,15 @@ def get_user_images(request):
     return Response(serializer.data)
 
 
+@api_view(['DELETE', ])
+def delete_user(request):
+    query = str(request.GET.get('user_id'))
+    users = User.objects.filter(user_id=query)
+    for user in users:
+        user.delete()
+    return Response(status=status.HTTP_202_ACCEPTED)
+
+
 @api_view(['GET', ])
 def get_user(request):
     request.build_absolute_uri()
@@ -255,9 +264,9 @@ def get_user(request):
 
     if user_id == '*':
         if gender == 'Both' or gender == '*' or not gender:
-            user = User.objects.filter(paid_fee=True).order_by('?')[:15]
+            user = User.objects.filter(paid_fee=True).order_by('?')[:20]
         else:
-            user = User.objects.filter(paid_fee=True, gender=gender).order_by('?')[:15]
+            user = User.objects.filter(paid_fee=True, gender=gender).order_by('?')[:20]
         # user = random.sample(list_user, 20)
     else:
         user = User.objects.filter(user_id=user_id)
