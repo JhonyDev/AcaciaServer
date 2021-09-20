@@ -392,6 +392,7 @@ class MpesaSTKApiView(APIView):
             Shortcode = s_code
             callback_url = c_url
 
+
             def get_stk_token():
                 consumer_key = consumer_k
                 consumer_secret = consumer_s
