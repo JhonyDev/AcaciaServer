@@ -9,11 +9,11 @@ env_file = os.path.join(BASE_DIR, ".env")
 env = environ.Env()
 env.read_env(env_file)
 
-SECRET_KEY = 'asdasdsadasdsadasd'
+SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = True
+DEBUG = env('DEBUG', cast=bool)
 
-PRODUCTION = False
+PRODUCTION = env('PRODUCTION', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,11 +134,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_cdn')
 
-CONSUMER_KEY = 'asdasdasdasd'
-CONSUMER_SECRET = 'env(sadasdsadmn,m)'
-PASSKEY = 'env(sadasdsadmn,m)'
-SHORT_CODE = 'env(sadasdsadmn,m)'
-CALLBACK_URL = 'env(sadasdsadmn,m)'
+CONSUMER_KEY = env('CONSUMER_KEY')
+CONSUMER_SECRET = env('CONSUMER_SECRET')
+PASSKEY = env('PASSKEY')
+SHORT_CODE = env('SHORT_CODE')
+CALLBACK_URL = env('CALLBACK_URL')
 
 CRONJOBS = [
     ('*/5 * * * *', 'api.cron.run_cron')
