@@ -186,7 +186,6 @@ $.ajax({
 
         console.log('updated');
 
-
         $("#dash").empty();
         $("#dash").append(
             dashboard(mainResponse.total_users, mainResponse.paid_users.length, mainResponse.unpaid_users.length,
