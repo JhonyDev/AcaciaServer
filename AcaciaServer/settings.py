@@ -134,6 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_cdn')
 
+
 CONSUMER_KEY = env('CONSUMER_KEY')
 CONSUMER_SECRET = env('CONSUMER_SECRET')
 PASSKEY = env('PASSKEY')
